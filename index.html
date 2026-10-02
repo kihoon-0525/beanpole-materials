@@ -1,0 +1,2208 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>빈폴맨 자재리스트 · BEANPOLE MEN Material List — SNS</title>
+<meta name="description" content="BEANPOLE MEN 자재 카탈로그 (SNS) — 항상 최신." />
+<!-- 카카오톡/메신저 링크 미리보기 (Open Graph) -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="빈폴맨 자재리스트 — SNS" />
+<meta property="og:description" content="BEANPOLE MEN 자재 카탈로그. 열면 항상 최신 상태 · 새로고침만 하면 업데이트 반영." />
+<meta property="og:url" content="https://kihoon-0525.github.io/beanpole-materials/" />
+<meta property="og:image" content="https://kihoon-0525.github.io/beanpole-materials/assets/og_card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<style>
+  :root{
+    --bg:#f5f3ef;
+    --paper:#ffffff;
+    --ink:#111111;
+    --muted:#7a7a7a;
+    --line:#e6e3dc;
+    --accent:#111111;
+    --accent-soft:#1f1f1f;
+    --shadow:0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:"Pretendard","Apple SD Gothic Neo","Helvetica Neue",Arial,system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  /* 커서 — 사이트 안에서만 ʕ •ᴥ• ʔ + 레이어 화이팅 (누를 수 있는 곳은 웃는 얼굴) */
+  :root{
+    --cur-arrow:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2252%22 height=%2238%22 viewBox=%220 0 52 38%22%3E%3Cpath d=%22M1 1V7.4L2.7 5.9L4 8.6L5.2 8L3.9 5.4H6.4Z%22 fill=%22%232b2118%22 stroke=%22%23ffffff%22 stroke-width=%221.2%22 stroke-linejoin=%22round%22 paint-order=%22stroke%22/%3E%3Cg transform=%22translate%281.5 0%29%22%3E%3Cg fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cg stroke=%22%23ffffff%22 stroke-width=%224%22%3E%3Cpath d=%22M15.5 7Q8.5 6 9 11.5Q9.4 15 12.5 15V20.5%22/%3E%3Cpath d=%22M38.5 7Q45.5 6 45 11.5Q44.6 15 41.5 15V20.5%22/%3E%3Ccircle cx=%2219.6%22 cy=%2212.6%22 r=%221.6%22 fill=%22%23ffffff%22 stroke=%22none%22/%3E%3Ccircle cx=%2234.4%22 cy=%2212.6%22 r=%221.6%22 fill=%22%23ffffff%22 stroke=%22none%22/%3E%3Cpath d=%22M24.4 12.4Q27 11.2 29.6 12.4M24.4 12.4Q25.2 15.8 27 13.6Q28.8 15.8 29.6 12.4%22/%3E%3C/g%3E%3Cg stroke=%22%232b2118%22 stroke-width=%221.7%22%3E%3Cpath d=%22M15.5 7Q8.5 6 9 11.5Q9.4 15 12.5 15V20.5%22/%3E%3Cpath d=%22M38.5 7Q45.5 6 45 11.5Q44.6 15 41.5 15V20.5%22/%3E%3Ccircle cx=%2219.6%22 cy=%2212.6%22 r=%221.6%22 fill=%22%232b2118%22 stroke=%22none%22/%3E%3Ccircle cx=%2234.4%22 cy=%2212.6%22 r=%221.6%22 fill=%22%232b2118%22 stroke=%22none%22/%3E%3Cpath d=%22M24.4 12.4Q27 11.2 29.6 12.4M24.4 12.4Q25.2 15.8 27 13.6Q28.8 15.8 29.6 12.4%22/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3Ctext x=%2228.5%22 y=%2231%22 text-anchor=%22middle%22 font-family=%22Apple SD Gothic Neo,Malgun Gothic,Noto Sans KR,sans-serif%22 font-size=%227.6%22 font-weight=%22800%22 fill=%22%238a5a2b%22 stroke=%22%23ffffff%22 stroke-width=%222.4%22 paint-order=%22stroke%22 stroke-linejoin=%22round%22%3E%EB%A0%88%EC%9D%B4%EC%96%B4 %ED%99%94%EC%9D%B4%ED%8C%85%3C/text%3E%3C/svg%3E") 1 1, auto;
+    --cur-hand:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2252%22 height=%2238%22 viewBox=%220 0 52 38%22%3E%3Cpath d=%22M1 1V7.4L2.7 5.9L4 8.6L5.2 8L3.9 5.4H6.4Z%22 fill=%22%232b2118%22 stroke=%22%23ffffff%22 stroke-width=%221.2%22 stroke-linejoin=%22round%22 paint-order=%22stroke%22/%3E%3Cg transform=%22translate%281.5 0%29%22%3E%3Cg fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cg stroke=%22%23ffffff%22 stroke-width=%224%22%3E%3Cpath d=%22M15.5 7Q8.5 6 9 11.5Q9.4 15 12.5 15V20.5%22/%3E%3Cpath d=%22M38.5 7Q45.5 6 45 11.5Q44.6 15 41.5 15V20.5%22/%3E%3Cpath d=%22M17.6 13.4Q19.6 11 21.6 13.4M32.4 13.4Q34.4 11 36.4 13.4%22/%3E%3Cpath d=%22M24.4 12.4Q27 11.2 29.6 12.4M24.4 12.4Q25.2 15.8 27 13.6Q28.8 15.8 29.6 12.4%22/%3E%3C/g%3E%3Cg stroke=%22%232b2118%22 stroke-width=%221.7%22%3E%3Cpath d=%22M15.5 7Q8.5 6 9 11.5Q9.4 15 12.5 15V20.5%22/%3E%3Cpath d=%22M38.5 7Q45.5 6 45 11.5Q44.6 15 41.5 15V20.5%22/%3E%3Cpath d=%22M17.6 13.4Q19.6 11 21.6 13.4M32.4 13.4Q34.4 11 36.4 13.4%22/%3E%3Cpath d=%22M24.4 12.4Q27 11.2 29.6 12.4M24.4 12.4Q25.2 15.8 27 13.6Q28.8 15.8 29.6 12.4%22/%3E%3C/g%3E%3C/g%3E%3Cg stroke=%22%23f08a9b%22 stroke-width=%221.4%22 fill=%22none%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M14.6 16l1-1.8M16.4 16.2l1-1.8M36.6 16.2l1-1.8M38.4 16l1-1.8%22/%3E%3C/g%3E%3C/g%3E%3Ctext x=%2228.5%22 y=%2231%22 text-anchor=%22middle%22 font-family=%22Apple SD Gothic Neo,Malgun Gothic,Noto Sans KR,sans-serif%22 font-size=%227.6%22 font-weight=%22800%22 fill=%22%238a5a2b%22 stroke=%22%23ffffff%22 stroke-width=%222.4%22 paint-order=%22stroke%22 stroke-linejoin=%22round%22%3E%EB%A0%88%EC%9D%B4%EC%96%B4 %ED%99%94%EC%9D%B4%ED%8C%85%3C/text%3E%3C/svg%3E") 1 1, pointer;
+  }
+  html,body{cursor:var(--cur-arrow)}
+  a,select,summary,label,[role=link],[role=button],input[type=checkbox],input[type=radio],input[type=file]{cursor:var(--cur-hand)}
+  input:not([type=checkbox]):not([type=radio]):not([type=file]),textarea,[contenteditable]{cursor:text}
+  button{font:inherit;cursor:var(--cur-hand)}
+  input,textarea{font:inherit}
+
+  /* HEADER */
+  header.brand-bar{
+    position:sticky;top:0;z-index:30;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(6px);
+  }
+  .bar-row{
+    max-width:1280px;margin:0 auto;padding:18px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  }
+  .brand{
+    display:flex;align-items:baseline;gap:14px;cursor:var(--cur-hand);user-select:none;
+  }
+  .brand:hover .logo{opacity:.7}
+  .brand .logo{
+    font-size:26px;font-weight:800;letter-spacing:.06em;
+  }
+  .brand .sub{
+    color:var(--muted);font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+  }
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap}
+  .toolbar button{
+    background:var(--paper);color:var(--ink);
+    border:1px solid var(--line);
+    padding:10px 14px;border-radius:999px;
+    font-size:13px;font-weight:500;letter-spacing:.02em;
+    transition:all .15s ease;
+  }
+  .toolbar button:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .toolbar .primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .toolbar .primary:hover{background:#000}
+  .toolbar .danger:hover{background:#b22;border-color:#b22}
+
+  /* TABS */
+  nav.tabs{
+    max-width:1280px;margin:0 auto;padding:0 24px;
+    display:flex;gap:4px;overflow-x:auto;
+    border-bottom:1px solid var(--line);
+    background:var(--paper);
+    position:sticky;top:80px;z-index:20;
+  }
+  nav.tabs button{
+    background:transparent;border:none;
+    padding:14px 18px;font-size:13px;font-weight:600;
+    letter-spacing:.14em;color:var(--muted);
+    border-bottom:2px solid transparent;
+    white-space:nowrap;
+  }
+  nav.tabs button:hover{color:var(--ink)}
+  nav.tabs button.active{color:var(--ink);border-bottom-color:var(--ink)}
+  nav.tabs .count{
+    margin-left:6px;color:var(--muted);font-weight:400;font-size:11px;
+  }
+  nav.tabs button.active .count{color:var(--ink)}
+
+  /* SEARCH BAR */
+  .search-bar{
+    max-width:1280px;margin:0 auto;padding:18px 24px 0;
+    display:flex;align-items:center;gap:12px;
+  }
+  .search-bar input{
+    flex:1;max-width:420px;
+    padding:10px 14px;
+    border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);
+    outline:none;font-size:13px;
+  }
+  .search-bar input:focus{border-color:var(--ink)}
+  .search-bar .info{color:var(--muted);font-size:12px}
+
+  /* GRID */
+  main.grid-wrap{max-width:1280px;margin:0 auto;padding:24px}
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+    gap:22px;
+  }
+  /* 카드 필드 앞 라벨 (품번/품명/사이즈 등) */
+  .fld-label{
+    display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.02em;
+    color:#8a8577;background:rgba(0,0,0,.055);border-radius:4px;
+    padding:1px 5px;margin-right:6px;vertical-align:middle;position:relative;top:-1px;
+    font-family:-apple-system,BlinkMacSystemFont,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    text-transform:none;letter-spacing:0;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex;flex-direction:column;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    position:relative;
+  }
+  .card:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow);
+    border-color:#d8d4ca;
+  }
+  .img-wrap{
+    aspect-ratio:1/1;background:#f0ede6;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    cursor:var(--cur-hand);
+  }
+  .img-wrap img{
+    width:100%;height:100%;object-fit:contain;
+    transition:transform .25s ease;
+  }
+  .card:hover .img-wrap img{transform:scale(1.03)}
+  .img-wrap .placeholder{color:var(--muted);font-size:12px}
+  .body{padding:14px 14px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .code{
+    font-size:11px;letter-spacing:.1em;font-weight:700;
+    color:var(--muted);text-transform:uppercase;
+    font-family:"SF Mono","Menlo",ui-monospace,monospace;
+  }
+  .name{font-size:14px;font-weight:600;line-height:1.4;color:var(--ink);word-break:break-word}
+  .price{font-size:12px;color:var(--muted);line-height:1.4;word-break:break-word}
+  .actions{
+    position:absolute;top:8px;right:8px;
+    display:flex;gap:6px;opacity:0;transition:opacity .15s ease;
+  }
+  .card:hover .actions{opacity:1}
+  .actions button{
+    width:30px;height:30px;border-radius:999px;
+    border:none;background:rgba(255,255,255,.92);
+    box-shadow:0 1px 3px rgba(0,0,0,.12);
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;line-height:1;
+  }
+  .actions button:hover{background:var(--ink);color:var(--paper)}
+  .actions .del:hover{background:#c0392b}
+
+  .empty{
+    grid-column:1/-1;
+    text-align:center;padding:80px 20px;color:var(--muted);
+    border:2px dashed var(--line);border-radius:var(--radius);
+  }
+  .empty h3{margin:0 0 6px;font-weight:600;color:var(--ink)}
+
+  /* ADD TILE — always-visible "+" card at end of grid */
+  .add-tile{
+    background:var(--paper);
+    border:2px dashed #c9c4b9;
+    border-radius:var(--radius);
+    min-height:280px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    color:var(--muted);cursor:var(--cur-hand);
+    transition:all .18s ease;
+  }
+  .add-tile:hover{
+    border-color:var(--ink);color:var(--ink);
+    background:#fafaf7;transform:translateY(-2px);
+  }
+  .add-tile .plus{
+    width:54px;height:54px;border-radius:999px;
+    border:1.5px solid currentColor;
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;font-weight:300;line-height:1;
+  }
+  .add-tile .label{font-size:13px;font-weight:600;letter-spacing:.06em}
+  .add-tile .hint{font-size:11px;color:var(--muted)}
+
+  /* FLOATING ACTION BUTTON */
+  .fab{
+    position:fixed;right:24px;bottom:24px;z-index:50;
+    width:60px;height:60px;border-radius:999px;
+    background:var(--ink);color:var(--paper);
+    border:none;font-size:28px;font-weight:300;line-height:1;
+    box-shadow:0 6px 20px rgba(0,0,0,.25);
+    cursor:var(--cur-hand);display:flex;align-items:center;justify-content:center;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .fab:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 10px 28px rgba(0,0,0,.3)}
+  .fab::after{
+    content:'자재 추가';position:absolute;right:74px;
+    background:var(--ink);color:var(--paper);
+    font-size:12px;padding:6px 12px;border-radius:999px;
+    white-space:nowrap;opacity:0;pointer-events:none;
+    transition:opacity .15s ease;
+    font-weight:500;letter-spacing:.04em;
+  }
+  .fab:hover::after{opacity:1}
+
+  /* FOOTER */
+  footer{
+    max-width:1280px;margin:0 auto;padding:32px 24px 60px;
+    color:var(--muted);font-size:12px;text-align:center;border-top:1px solid var(--line);margin-top:24px;
+  }
+
+  /* MODAL */
+  .modal{
+    position:fixed;inset:0;z-index:100;
+    background:rgba(20,20,20,.4);backdrop-filter:blur(2px);
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .modal[hidden]{display:none}
+  .dialog{
+    background:var(--paper);border-radius:var(--radius);
+    width:min(520px,100%);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    animation:pop .15s ease;
+  }
+  @keyframes pop{from{transform:scale(.96);opacity:0}to{transform:scale(1);opacity:1}}
+  .dialog header{
+    padding:18px 20px;border-bottom:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .dialog header h2{margin:0;font-size:16px;font-weight:700}
+  .close{background:none;border:none;font-size:22px;color:var(--muted);line-height:1}
+  .close:hover{color:var(--ink)}
+  form.form{padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+  .field label{display:block;font-size:11px;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;font-weight:600}
+  .field input{
+    width:100%;padding:10px 12px;
+    border:1px solid var(--line);border-radius:8px;
+    background:#fafaf7;outline:none;
+  }
+  .field input:focus{border-color:var(--ink);background:var(--paper)}
+  .img-pick{
+    border:2px dashed #d8d4ca;border-radius:12px;
+    padding:18px;text-align:center;background:#fafaf7;
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    cursor:var(--cur-hand);
+    transition:all .18s ease;
+  }
+  .img-pick:hover{border-color:var(--ink);background:#f3f0e8}
+  .img-pick.dragover{border-color:var(--ink);background:#eee9dd;transform:scale(1.01)}
+  .img-pick.has-image{padding:14px}
+  .img-pick img{max-width:240px;max-height:240px;object-fit:contain;border-radius:6px;background:var(--paper);padding:6px}
+  .img-pick .pick-btn{
+    display:inline-block;padding:9px 16px;border-radius:999px;
+    background:var(--ink);color:var(--paper);font-size:12px;font-weight:600;
+    letter-spacing:.04em;cursor:var(--cur-hand);
+  }
+  .img-pick small{color:var(--muted);font-size:11px;line-height:1.4}
+  .img-pick .icon{
+    font-size:32px;color:#c9c4b9;line-height:1;
+  }
+  .img-pick .change{
+    font-size:11px;color:var(--muted);text-decoration:underline;
+  }
+  /* fields container that animates in once image is picked */
+  .fields-stack{
+    display:flex;flex-direction:column;gap:14px;
+    overflow:hidden;
+    max-height:0;opacity:0;
+    transition:max-height .35s ease, opacity .25s ease;
+  }
+  .fields-stack.show{
+    max-height:600px;opacity:1;
+  }
+  .form-actions{
+    display:flex;justify-content:flex-end;gap:8px;margin-top:6px;
+  }
+  .form-actions button{
+    padding:10px 16px;border-radius:999px;border:1px solid var(--line);
+    background:var(--paper);font-size:13px;
+  }
+  .form-actions button.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .form-actions button.primary:hover{background:#000}
+  .form-actions button:hover{background:#f0ede6}
+
+  /* LIGHTBOX */
+  .lightbox{
+    position:fixed;inset:0;z-index:200;
+    background:rgba(0,0,0,.86);
+    display:flex;align-items:center;justify-content:center;
+    padding:30px;cursor:var(--cur-arrow);
+  }
+  .lightbox[hidden]{display:none}
+  .lightbox img{max-width:100%;max-height:100%;border-radius:6px;cursor:var(--cur-hand)}
+  .lb-counter{position:fixed;bottom:24px;left:0;right:0;text-align:center;color:#fff;font-size:13px;font-weight:600;text-shadow:0 1px 4px rgba(0,0,0,.6);pointer-events:none}
+  .lb-counter[hidden]{display:none}
+  .multi-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.62);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px;pointer-events:none}
+
+  /* PRICE TABLE CARD + MODAL */
+  .img-wrap.table-thumb{cursor:var(--cur-hand);background:linear-gradient(135deg,#f3f5ee,#e7eedd)}
+  .table-ph{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .table-ph .tt-label{
+    font-size:15px;font-weight:800;letter-spacing:.12em;
+    color:#5a6b4a;text-align:center;
+  }
+  .table-btn{
+    margin-top:4px;align-self:flex-start;
+    border:1px solid var(--line);background:var(--paper);border-radius:8px;
+    padding:7px 13px;font-size:12px;font-weight:700;color:var(--ink);
+    cursor:var(--cur-hand);transition:background .15s ease, border-color .15s ease;
+  }
+  .table-btn:hover{background:#eef2e6;border-color:#cfd8bf}
+  .table-modal{
+    position:fixed;inset:0;z-index:210;
+    background:rgba(0,0,0,.6);
+    display:flex;align-items:center;justify-content:center;padding:20px;
+  }
+  .table-modal[hidden]{display:none}
+  .table-panel{
+    background:var(--paper);border-radius:14px;
+    max-width:540px;width:100%;max-height:86vh;
+    display:flex;flex-direction:column;overflow:hidden;
+    box-shadow:0 24px 70px rgba(0,0,0,.32);
+  }
+  .table-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 20px;border-bottom:1px solid var(--line);
+  }
+  .table-head h3{margin:0;font-size:16px;font-weight:700;color:var(--ink)}
+  .table-head button{
+    border:none;background:none;font-size:18px;cursor:var(--cur-hand);
+    color:var(--muted);padding:4px 10px;border-radius:8px;line-height:1;
+  }
+  .table-head button:hover{background:var(--line);color:var(--ink)}
+  .table-scroll{overflow:auto}
+  table.ptable{border-collapse:collapse;width:100%;font-size:13px}
+  table.ptable th, table.ptable td{padding:10px 14px;text-align:center;border-bottom:1px solid var(--line)}
+  table.ptable thead th{position:sticky;top:0;background:#eef2e6;font-weight:700;color:var(--ink);z-index:1}
+  table.ptable td:first-child{font-weight:700;background:#faf9f5}
+  table.ptable tbody tr:hover td{background:#f4f6ee}
+
+  /* SNAP FOLDER */
+  .folder-card{cursor:var(--cur-hand)}
+  .folder-inner{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:5px;padding:34px 14px;text-align:center;
+    background:linear-gradient(135deg,#f5f3ec,#eae6da);
+  }
+  .folder-ico{font-size:46px;line-height:1}
+  .folder-name{font-size:16px;font-weight:800;color:var(--ink)}
+  .folder-code{font-size:11px;letter-spacing:.1em;color:var(--muted);font-family:"SF Mono","Menlo",ui-monospace,monospace}
+  .folder-count{font-size:12px;color:var(--muted);margin-top:2px}
+  /* SECTION HEADERS (폴더 대신 단락 구분) */
+  .section-head{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;
+    margin:46px 2px 8px;padding-bottom:10px;border-bottom:1px solid rgba(0,0,0,.09)}
+  .section-head:first-child{margin-top:4px}
+  .section-head .sh-name{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:.01em}
+  .section-head .sh-code{font-size:11px;letter-spacing:.1em;color:var(--muted);font-family:"SF Mono","Menlo",ui-monospace,monospace}
+  .section-head .sh-count{font-size:12px;color:var(--muted);margin-left:auto}
+  .crumb{grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:2px 2px 8px}
+  .crumb-back{
+    border:1px solid var(--line);background:var(--paper);border-radius:8px;
+    padding:7px 14px;font-size:13px;font-weight:700;color:var(--ink);cursor:var(--cur-hand);
+    transition:background .15s ease;
+  }
+  .crumb-back:hover{background:#eef2e6}
+  .crumb-here{font-size:14px;font-weight:700;color:var(--muted)}
+
+  /* TOAST */
+  .toast{
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+    background:var(--ink);color:var(--paper);
+    padding:10px 18px;border-radius:999px;font-size:13px;
+    box-shadow:var(--shadow);z-index:300;
+    opacity:0;transition:opacity .2s ease, transform .2s ease;
+    pointer-events:none;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+
+  @media (max-width:560px){
+    .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+    .brand .logo{font-size:20px}
+    nav.tabs{top:74px}
+  }
+
+  /* ADMIN-ONLY ELEMENTS — hidden by default (viewer mode) */
+  [data-admin]{display:none !important}
+  body.is-admin [data-admin]{display:revert !important}
+  body.is-admin button[data-admin]{display:inline-flex !important}
+  body.is-admin .fab[data-admin]{display:flex !important}
+  body.is-admin .actions[data-admin],
+  body.is-admin .add-tile[data-admin],
+  body.is-admin .save-bar[data-admin]{display:flex !important}
+  /* VIEWER-ONLY (hidden when admin) */
+  body.is-admin [data-viewer]{display:none !important}
+  /* Admin badge */
+  .admin-badge{
+    align-self:center;
+    font-size:11px;letter-spacing:.1em;font-weight:700;
+    padding:6px 12px;border-radius:999px;
+    background:#fff5cc;color:#7a5c00;border:1px solid #f0e4a3;
+    text-transform:uppercase;
+  }
+  /* SAVE BAR */
+  .save-bar{
+    max-width:1280px;margin:14px auto 0;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    background:#fff8e1;
+    border:1px solid #f0e4a3;
+    border-radius:12px;
+    margin-left:24px;margin-right:24px;
+  }
+  @media(min-width:1328px){.save-bar{margin-left:auto;margin-right:auto}}
+  .save-bar-info{display:flex;align-items:center;gap:12px;color:#7a5c00;font-size:14px}
+  .save-bar-info strong{font-weight:700;letter-spacing:.04em}
+  .save-bar-status{font-size:12px;padding:3px 10px;border-radius:999px;background:#fff;color:#7a5c00;border:1px solid #f0e4a3}
+  .save-bar-status.dirty{background:#ffe082;color:#5a3c00;font-weight:600}
+  .save-bar-actions{display:flex;gap:8px}
+  .save-bar-actions button{
+    padding:9px 16px;border-radius:999px;
+    border:1px solid #d8c280;background:#fff;color:#7a5c00;
+    font-size:13px;font-weight:600;letter-spacing:.02em;
+    transition:all .15s ease;
+  }
+  .save-bar-actions button:hover{background:#7a5c00;color:#fff;border-color:#7a5c00}
+  .save-bar-actions button.primary{background:#7a5c00;color:#fff;border-color:#7a5c00}
+  .save-bar-actions button.primary:hover{background:#5a3c00}
+  /* ===== 염색비 계산기 ===== */
+  body.on-dye .search-bar{display:none}
+  body.on-dye .save-bar[data-admin]{display:none !important}
+  body.on-dye .grid{display:block}
+  .dye-wrap{display:flex;flex-direction:column;gap:18px}
+  .dye-top{display:grid;grid-template-columns:minmax(290px,360px) 1fr;gap:18px;align-items:start}
+  @media(max-width:880px){.dye-top{grid-template-columns:1fr}}
+  .dye-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;box-shadow:var(--shadow)}
+  .dye-card h3{margin:0 0 16px;font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
+  .dye-card h3 em{font-style:normal;color:var(--ink);letter-spacing:.02em;font-weight:700}
+  .dye-row{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+  .dye-row[hidden]{display:none}
+  .dye-row>label{font-size:12.5px;font-weight:600;width:72px;flex:none;color:#555}
+  .dye-row select,.dye-row input{padding:8px 10px;border:1px solid var(--line);
+    border-radius:8px;background:#fff;font-size:13px;color:var(--ink)}
+  .dye-row select{flex:1;min-width:0}
+  .dye-row input[type=number]{width:86px;text-align:right;font-variant-numeric:tabular-nums}
+  .dye-row .u{font-size:12px;color:var(--muted)}
+  .dye-row .hint{font-size:11px;color:var(--muted);margin-left:auto}
+  .dye-mode[hidden]{display:none}
+  .dye-mode{display:flex;margin:2px 0 16px;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .dye-mode button{flex:1;padding:9px 4px;background:#fff;border:none;
+    font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+  .dye-mode button.on{background:var(--ink);color:#fff}
+  .dye-sep{border:none;border-top:1px solid var(--line);margin:16px 0 14px}
+  /* 결과 */
+  .dye-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .dye-kpi>div{background:#fff;padding:13px 15px}
+  .dye-kpi .k{font-size:10.5px;letter-spacing:.08em;color:var(--muted);margin-bottom:5px;font-weight:700}
+  .dye-kpi .v{font-size:19px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .dye-kpi .v s{text-decoration:none;font-size:12px;font-weight:500;color:var(--muted);margin-left:2px}
+  .dye-kpi>div.big{background:#111}
+  .dye-kpi>div.big .k{color:rgba(255,255,255,.55)}
+  .dye-kpi>div.big .v{color:#fff}
+  .dye-kpi>div.big .v s{color:rgba(255,255,255,.5)}
+  /* 개당/yd당 염색비 — 실무에서 제일 많이 보는 값이라 별도 강조 */
+  .dye-kpi>div.hi{background:#456f2c}
+  .dye-kpi>div.hi .k{color:rgba(255,255,255,.6)}
+  .dye-kpi>div.hi .v{color:#fff}
+  .dye-kpi>div.hi .v s{color:rgba(255,255,255,.55)}
+  .dye-gauge-wrap{margin:16px 0 0}
+  .dye-gauge{height:9px;border-radius:999px;background:#ece9e1;overflow:hidden}
+  .dye-gauge i{display:block;height:100%;border-radius:999px}
+  .dye-gauge-lbl{display:flex;justify-content:space-between;font-size:11px;
+    color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
+  .dye-tip{border-radius:10px;padding:12px 14px;font-size:12.5px;line-height:1.65;margin-top:12px}
+  .dye-tip b{font-weight:700}
+  .dye-tip .big{font-size:14px;font-weight:700}
+  .dye-tip.ok{background:#eff6e9;border:1px solid #d2e4c2;color:#33571f}
+  .dye-tip.warn{background:#fdeded;border:1px solid #f2c9c9;color:#8d2020}
+  .dye-tip.info{background:#eef2f9;border:1px solid #cdd9ea;color:#22456f}
+  .dye-chain{font-size:12px;color:var(--muted);line-height:1.9;margin-top:14px;
+    font-variant-numeric:tabular-nums}
+  .dye-chain b{color:var(--ink);font-weight:700}
+  /* 표 */
+  /* 접이식 섹션 (+/- 토글) */
+  details.dye-fold > summary{cursor:var(--cur-hand);list-style:none;display:flex;align-items:center;gap:9px;
+    font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
+  details.dye-fold > summary::-webkit-details-marker{display:none}
+  details.dye-fold > summary:before{content:'＋';font-weight:400;font-size:13px;
+    letter-spacing:0;width:14px;text-align:center;flex:none}
+  details.dye-fold[open] > summary:before{content:'－'}
+  details.dye-fold > summary:hover{color:var(--ink)}
+  details.dye-fold > summary em{font-style:normal;color:var(--ink);letter-spacing:.02em;font-weight:700}
+  details.dye-fold[open] > summary{margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .dye-foot{font-size:12px;color:var(--muted);line-height:1.7;text-align:center;padding:0 4px 4px}
+  /* 조합 모드 */
+  .dye-seg{display:flex;margin:0 0 16px;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .dye-seg button{flex:1;padding:9px 4px;background:#fff;border:none;
+    font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+  .dye-seg button.on{background:var(--ink);color:#fff}
+  .dye-mrow{border:1px solid var(--line);border-radius:10px;padding:10px 11px;
+    margin-bottom:9px;background:#fdfdfc}
+  .mr-top{display:flex;align-items:center;gap:8px}
+  .mr-bot{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .mr-ship{display:flex;align-items:center;gap:8px;margin-top:8px}
+  .mr-ship .lb{margin-left:0 !important}
+  .dye-ship{display:flex;flex:1;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .dye-ship button{flex:1;padding:6px 4px;background:#fff;border:none;
+    font-size:11.5px;font-weight:700;color:var(--muted)}
+  .dye-ship button.on{background:#456f2c;color:#fff}
+  .dye-mrow select{flex:1;min-width:0;padding:7px 9px;border:1px solid var(--line);
+    border-radius:8px;background:#fff;font-size:12.5px;color:var(--ink)}
+  .dye-mrow input[type=number]{width:58px;text-align:right;padding:6px 8px;
+    border:1px solid var(--line);border-radius:8px;font-size:13px;
+    font-variant-numeric:tabular-nums}
+  .dye-mrow .u{font-size:11.5px;color:var(--muted);flex:none}
+  .dye-mrow .lb{font-size:11.5px;color:var(--muted);flex:none;margin-left:4px}
+  .dye-mrow .mr-qty{margin-left:auto;font-size:12px;font-weight:700;color:#456f2c;
+    font-variant-numeric:tabular-nums;flex:none}
+  .dye-mrow .del{flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);
+    background:#fff;color:var(--muted);font-size:13px;line-height:1;padding:0}
+  .dye-mrow .del:hover{background:#fdeded;border-color:#f2c9c9;color:#8d2020}
+  .dye-mrow .del[disabled]{opacity:.3;cursor:var(--cur-arrow)}
+  .dye-add{width:100%;padding:9px;border:1px dashed var(--line);border-radius:8px;
+    background:#fff;color:var(--muted);font-size:12.5px;font-weight:600;margin-top:2px}
+  .dye-add:hover{border-color:var(--ink);color:var(--ink)}
+  .dye-add[disabled]{opacity:.4;cursor:var(--cur-arrow)}
+  table.dyetab td.hi{background:#eff6e9;font-weight:700;color:#33571f}
+  table.dyetab tfoot td{border-top:2px solid var(--line);font-weight:800;background:#faf9f5}
+  table.dyetab tbody tr.static{cursor:var(--cur-arrow)}
+  .dye-scroll{overflow-x:auto;margin:0 -4px}
+  table.dyetab{border-collapse:collapse;width:100%;font-size:12.5px;
+    font-variant-numeric:tabular-nums}
+  table.dyetab th,table.dyetab td{padding:9px 12px;border-bottom:1px solid var(--line);
+    text-align:right;white-space:nowrap}
+  table.dyetab th{background:#f4f3ee;font-size:10.5px;letter-spacing:.06em;
+    color:var(--muted);font-weight:800}
+  table.dyetab th:first-child,table.dyetab td:first-child{text-align:left}
+  table.dyetab tbody tr:hover td{background:#faf9f5}
+  table.dyetab tr.sel td{background:#f2f6ec}
+  table.dyetab td.em{font-weight:700;color:var(--ink)}
+  table.dyetab tbody tr{cursor:var(--cur-hand)}
+</style>
+</head>
+<body>
+
+<script type="application/json" id="initial-data">{}</script>
+
+<header class="brand-bar">
+  <div class="bar-row">
+    <div class="brand" id="brand-home" role="link" tabindex="0" title="처음 화면으로">
+      <div class="logo">BEANPOLE MEN</div>
+      <div class="sub">Material List -SNS-</div>
+    </div>
+    <div class="toolbar">
+      <button id="btn-add" class="primary" data-admin>＋ 자재 추가</button>
+      <button id="btn-save-file" data-admin title="현재 내용을 HTML 파일로 백업 다운로드 (GitHub 동기화와 별개)">💾 백업 다운로드</button>
+      <button id="btn-print">🖨 인쇄</button>
+      <button id="btn-pdf">📄 PDF 저장</button>
+      <button id="btn-excel">📊 엑셀 저장</button>
+      <span class="admin-badge" data-admin>관리자 모드</span>
+      <button id="btn-token" data-admin title="GitHub 토큰 설정/변경">🔑 GitHub 토큰</button>
+      <button id="btn-admin-toggle" class="primary">🔒 관리자 모드</button>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs"></nav>
+
+<div class="search-bar">
+  <input id="search" type="search" placeholder="검색 — 코드, 이름, 가격…" />
+  <span class="info" id="info"></span>
+</div>
+
+<div class="save-bar" data-admin>
+  <div class="save-bar-info">
+    <strong>💾 <span id="save-cat-name">BUTTON</span></strong>
+    <span class="save-bar-status" id="save-bar-status">저장된 상태</span>
+  </div>
+  <div class="save-bar-actions">
+    <button id="btn-save-cat" class="primary">저장</button>
+    <button id="btn-save-exit">저장 후 나가기</button>
+  </div>
+</div>
+
+<main class="grid-wrap">
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  <div>BEANPOLE MEN · 자재 카탈로그 — ㈜ 에스엔에스 SUPPLY&amp;SUPPORT</div>
+  <div style="margin-top:6px">서울시 종로구 효제동 167 · 서울시 중구 청계천로 260-6 · sns@sns.ne.kr</div>
+</footer>
+
+<!-- EDIT / ADD MODAL -->
+<div class="modal" id="modal" hidden>
+  <div class="dialog" role="dialog" aria-modal="true">
+    <header>
+      <h2 id="modal-title">자재 편집</h2>
+      <button class="close" id="modal-close" aria-label="close">&times;</button>
+    </header>
+    <form class="form" id="form">
+      <div class="field">
+        <label>1. 이미지</label>
+        <div class="img-pick" id="img-pick">
+          <img id="img-preview" alt="" hidden />
+          <div id="img-empty" style="display:flex;flex-direction:column;align-items:center;gap:10px">
+            <div class="icon">＋</div>
+            <small><b>클릭</b>하거나 <b>이미지 끌어다 놓기</b></small>
+          </div>
+          <span class="pick-btn" id="img-pick-btn" hidden>이미지 변경</span>
+          <input id="img-input" type="file" accept="image/*" hidden />
+        </div>
+      </div>
+      <div class="fields-stack" id="fields-stack">
+        <div class="field">
+          <label>2. 아이템 넘버 (코드)</label>
+          <input name="code" autocomplete="off" placeholder="예) MA-SLW-11" />
+        </div>
+        <div class="field">
+          <label>3. 이름</label>
+          <input name="name" autocomplete="off" placeholder="예) 11.5MM (T/R 테 + LOGO)" />
+        </div>
+        <div class="field">
+          <label>4. 가격 / 스펙</label>
+          <input name="price" autocomplete="off" placeholder="숫자만 입력하면 (@숫자) 자동 / 예) 145 → (@145)" />
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" id="form-cancel">취소</button>
+        <button type="submit" class="primary">저장</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<button class="fab" id="fab" title="자재 추가" aria-label="자재 추가" data-admin>＋</button>
+
+<div class="lightbox" id="lightbox" hidden><img id="lightbox-img" alt="" /><div id="lightbox-counter" class="lb-counter" hidden></div></div>
+<div class="table-modal" id="table-modal" hidden>
+  <div class="table-panel" role="dialog" aria-modal="true">
+    <div class="table-head">
+      <h3 id="table-modal-title"></h3>
+      <button id="table-modal-close" type="button" aria-label="닫기">✕</button>
+    </div>
+    <div class="table-scroll" id="table-modal-body"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+
+<script>
+/* ====== ADMIN ACCESS ======
+   본인만 편집 가능, 다른 사람들은 보기만 가능.
+   편집 모드로 들어가려면: 파일 URL 끝에 ?admin=비밀번호 붙이기
+   예) index.html?admin=비밀번호
+   한 번 들어가면 같은 브라우저에선 계속 관리자 모드 유지됨 (로그아웃 누르기 전까지).
+   주의: 클라이언트 잠금이라 HTML 소스 보면 비밀번호 노출됨.
+        진짜 보안이 필요하면 백엔드 호스팅 필요. */
+const ADMIN_KEY = "1234";   // ← 본인이 원하는 비밀번호로 바꾸세요
+const ADMIN_FLAG = "beanpole_admin_v1";   // 마리떼와 같은 github.io 도메인이라 키를 반드시 분리
+
+// 한글 IME로 잘못 입력된 비밀번호도 영문 키 입력으로 변환해서 인식
+// (예: 한글 입력 모드로 "whdyddnjs1" 치면 자모가 합쳐져서 한글 음절이 되는데, 그걸 다시 영문 키로 환산)
+function hangulToEng(text){
+  const INI = ['r','R','s','e','E','f','a','q','Q','t','T','d','w','W','c','z','x','v','g'];
+  const MED = ['k','o','i','O','j','p','u','P','h','hk','ho','hl','y','n','nj','np','nl','b','m','ml','l'];
+  const FIN = ['','r','R','rt','s','sw','sg','e','f','fr','fa','fq','ft','fx','fv','fg','a','q','qt','t','T','d','w','c','z','x','v','g'];
+  let out = '';
+  for(const ch of text){
+    const code = ch.charCodeAt(0);
+    if(code >= 0xAC00 && code <= 0xD7A3){
+      const idx = code - 0xAC00;
+      const i = Math.floor(idx / (21*28));
+      const m = Math.floor((idx % (21*28)) / 28);
+      const f = idx % 28;
+      out += INI[i] + MED[m] + FIN[f];
+    } else if(code >= 0x3131 && code <= 0x3163){
+      // 자모 단독 (ㄱㄴㄷ...): conservative pass-through; rarely needed
+      out += ch;
+    } else {
+      out += ch;
+    }
+  }
+  return out;
+}
+function checkAdminPassword(input){
+  if(input === ADMIN_KEY) return true;
+  if(hangulToEng(input) === ADMIN_KEY) return true;
+  return false;
+}
+
+(function initAdminMode(){
+  try{
+    const params = new URLSearchParams(location.search);
+    if(params.has('admin')){
+      if(checkAdminPassword(params.get('admin'))){
+        localStorage.setItem(ADMIN_FLAG, '1');
+      }else{
+        alert('비밀번호가 일치하지 않습니다.');
+      }
+      history.replaceState(null, '', location.pathname + location.hash);
+    }
+    if(params.has('logout')){
+      localStorage.removeItem(ADMIN_FLAG);
+      history.replaceState(null, '', location.pathname + location.hash);
+    }
+  }catch(e){}
+})();
+
+const IS_ADMIN = localStorage.getItem(ADMIN_FLAG) === '1';
+if(IS_ADMIN) document.body.classList.add('is-admin');
+
+/* ====== GITHUB SYNC CONFIG ======
+   본인이 수정 → GitHub에 push → 모든 사람이 새로고침 시 최신본 봄.
+   repo: github.com/kihoon-0525/beanpole-materials
+   data.json 만 push (이미지 추가하면 그 안에 base64로 박힘).
+   PAT는 admin 모드에서 처음 저장 시 한 번 입력 → 같은 브라우저면 계속 사용. */
+const GITHUB_OWNER = 'kihoon-0525';
+const GITHUB_REPO = 'beanpole-materials';
+const GITHUB_BRANCH = 'main';
+const GITHUB_DATA_PATH = 'data.json';
+const PAT_KEY = 'beanpole_github_pat_v1';
+const DATA_URL = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_DATA_PATH}`;
+
+/* ====== INITIAL DATA — 오프라인/fetch 실패 시 fallback ====== */
+const INITIAL_DATA_FALLBACK = JSON.parse(document.getElementById('initial-data').textContent);
+
+/* ====== STATE ====== */
+const STORAGE_KEY = 'beanpole_material_v1';
+// '_' 로 시작하는 키는 카테고리가 아니라 설정 블록(_dyeing 등) — 탭/엑셀에서 제외
+const catKeys = o => Object.keys(o).filter(k => k[0] !== '_');
+let CATEGORIES = catKeys(INITIAL_DATA_FALLBACK);
+let state = JSON.parse(JSON.stringify(INITIAL_DATA_FALLBACK)); // 초기값, 곧 덮어씀
+let currentTab = CATEGORIES[0];
+let currentFolder = null; // (구) 드릴다운용 — 이제 섹션뷰라 뷰에선 항상 null 유지
+let editFolder = null;    // 섹션뷰에서 관리자 추가/편집/삭제 대상 폴더명
+let editingIndex = -1; // -1 = adding new
+
+/* ====== 폴더형 카테고리(SNAP) 헬퍼 ====== */
+// 폴더형 카테고리인지 — 항목들이 items 배열(=폴더)을 가지면 폴더형
+function isFolderCat(cat){ const r = state[cat]||[]; return r.some(e => e && Array.isArray(e.items)); }
+// 카테고리 전체 자재 수 (폴더형이면 폴더 내부 합산)
+function catCount(cat){
+  const r = state[cat]||[];
+  if(isFolderCat(cat)) return r.reduce((s,f)=> s + (f.items? f.items.length : 0), 0);
+  return r.length;
+}
+// 모든 자재 평탄화 (엑셀/검색용). 폴더형이면 _folder 라벨 부착
+function flatItems(cat){
+  const r = state[cat]||[];
+  if(isFolderCat(cat)) return r.flatMap(f => (f.items||[]).map(it => Object.assign({_folder:f.folder}, it)));
+  return r;
+}
+// 지금 add/edit/delete 대상이 되는 배열 (폴더 안이면 그 폴더의 items)
+function currentItemsArray(){
+  const r = state[currentTab]||[];
+  if(isFolderCat(currentTab)){
+    const fname = editFolder || currentFolder;
+    if(fname){ const f = r.find(x => x.folder === fname); return f ? f.items : []; }
+  }
+  return r;
+}
+let pendingImageDataUrl = null; // when user picks new image in modal
+
+/* GitHub raw에서 최신 data.json 가져오기. 실패 시 fallback 반환. */
+async function fetchRemoteData(){
+  try{
+    const r = await fetch(`${DATA_URL}?t=${Date.now()}`, {cache: 'no-store'});
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    const data = await r.json();
+    return data;
+  }catch(e){
+    console.warn('remote data fetch 실패, fallback 사용', e);
+    return JSON.parse(JSON.stringify(INITIAL_DATA_FALLBACK));
+  }
+}
+
+function loadLocalState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      const obj = JSON.parse(raw);
+      for(const c of CATEGORIES) if(!obj[c]) obj[c] = [];
+      return obj;
+    }
+  }catch(e){console.warn('local load failed', e)}
+  return null;
+}
+function saveState(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    setDirty(true);
+  }catch(e){
+    toast('저장 용량 초과 — HTML 저장 후 다시 시도');
+    console.warn(e);
+  }
+}
+
+/* ====== GITHUB AUTO-PUSH ====== */
+function getPAT(){ return localStorage.getItem(PAT_KEY) || ''; }
+function setPAT(v){ localStorage.setItem(PAT_KEY, v); }
+function clearPAT(){ localStorage.removeItem(PAT_KEY); }
+
+function promptPAT(){
+  const cur = getPAT();
+  const msg =
+`GitHub Personal Access Token을 입력하세요.
+
+발급 경로:
+  github.com → 우측 상단 프로필 → Settings
+  → Developer settings (제일 아래)
+  → Personal access tokens → Fine-grained tokens
+  → "Generate new token"
+  → Repository access: Only select repositories → ${GITHUB_OWNER}/${GITHUB_REPO}
+  → Permissions → Repository permissions → Contents: Read and write
+  → 생성된 토큰(ghp_... 또는 github_pat_...) 복사해서 아래에 붙여넣기
+
+(한 번만 입력하면 이 브라우저에서 계속 사용됨)`;
+  const v = prompt(msg, cur);
+  if(v == null) return null;
+  const trimmed = v.trim();
+  if(!trimmed){ clearPAT(); return ''; }
+  setPAT(trimmed);
+  return trimmed;
+}
+
+/* GitHub Contents API로 data.json 덮어쓰기 */
+async function pushToGithub(){
+  let token = getPAT();
+  if(!token){ token = promptPAT(); if(!token) throw new Error('PAT 입력 취소'); }
+
+  const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_DATA_PATH}`;
+
+  // 현재 파일의 sha 가져오기 (있어야 덮어쓰기 가능)
+  let sha = null;
+  const getRes = await fetch(`${apiUrl}?ref=${GITHUB_BRANCH}`, {
+    headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' }
+  });
+  if(getRes.status === 401 || getRes.status === 403){
+    throw new Error('GitHub 토큰이 잘못됐거나 권한 부족. 토큰 재설정 필요.');
+  }
+  if(getRes.ok){
+    const cur = await getRes.json();
+    sha = cur.sha;
+  } else if(getRes.status !== 404){
+    throw new Error(`GitHub 조회 실패: ${getRes.status}`);
+  }
+
+  // UTF-8 안전 base64 인코딩
+  const jsonStr = JSON.stringify(state, null, 2);
+  const bytes = new TextEncoder().encode(jsonStr);
+  let bin = ''; for(const b of bytes) bin += String.fromCharCode(b);
+  const content = btoa(bin);
+
+  const body = {
+    message: `Update ${GITHUB_DATA_PATH} — ${new Date().toLocaleString('ko-KR')}`,
+    content,
+    branch: GITHUB_BRANCH,
+  };
+  if(sha) body.sha = sha;
+
+  const putRes = await fetch(apiUrl, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      Accept: 'application/vnd.github+json',
+    },
+    body: JSON.stringify(body),
+  });
+  if(!putRes.ok){
+    const err = await putRes.text();
+    throw new Error(`GitHub 업로드 실패 (${putRes.status}): ${err.slice(0,200)}`);
+  }
+  return await putRes.json();
+}
+
+async function pushWithFeedback(){
+  if(!IS_ADMIN) return false;
+  toast('GitHub에 업로드 중…');
+  try{
+    await pushToGithub();
+    setDirty(false);
+    toast('✅ GitHub 동기화 완료 — 모든 사람이 새로고침하면 최신본');
+    return true;
+  }catch(e){
+    console.error(e);
+    toast('❌ ' + e.message);
+    return false;
+  }
+}
+
+let dirty = false;
+function setDirty(v){
+  dirty = v;
+  const status = document.getElementById('save-bar-status');
+  if(status){
+    if(v){
+      status.textContent = '변경됨 — 저장 필요';
+      status.classList.add('dirty');
+    }else{
+      status.textContent = '저장된 상태';
+      status.classList.remove('dirty');
+    }
+  }
+}
+window.addEventListener('beforeunload', e => {
+  if(IS_ADMIN && dirty){
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
+
+function saveAsHtml(){
+  if(!IS_ADMIN) return;
+  // Update the embedded JSON with current state
+  const dataEl = document.getElementById('initial-data');
+  const prevText = dataEl.textContent;
+  dataEl.textContent = JSON.stringify(state);
+
+  // Strip admin-only DOM state so recipients open in viewer mode
+  const wasAdmin = document.body.classList.contains('is-admin');
+  document.body.classList.remove('is-admin');
+
+  const html = '<!doctype html>\n' + document.documentElement.outerHTML;
+
+  // Restore live page state
+  if(wasAdmin) document.body.classList.add('is-admin');
+  dataEl.textContent = prevText;
+
+  // Trigger download
+  const blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const ts = new Date().toISOString().slice(0,10).replace(/-/g,'');
+  a.href = url;
+  a.download = `Beanpole_Material_List_${ts}.html`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+
+  setDirty(false);
+  toast('HTML 파일 저장 완료 — 다운로드 폴더 확인');
+}
+
+/* ====== RENDER ====== */
+const $ = sel => document.querySelector(sel);
+const tabsEl = $('#tabs');
+const gridEl = $('#grid');
+const infoEl = $('#info');
+const searchEl = $('#search');
+
+function renderTabs(){
+  tabsEl.innerHTML = '';
+  for(const cat of CATEGORIES){
+    const b = document.createElement('button');
+    b.textContent = cat;
+    b.dataset.tab = cat;
+    if(cat === currentTab) b.classList.add('active');
+    const cnt = document.createElement('span');
+    cnt.className = 'count';
+    cnt.textContent = `(${catCount(cat)})`;
+    b.appendChild(cnt);
+    b.addEventListener('click', () => { currentTab = cat; currentFolder = null; renderTabs(); renderGrid(); updateSaveBar(); });
+    tabsEl.appendChild(b);
+  }
+  // 염색비 계산기 탭 (자재 카테고리가 아니라 도구 — 맨 끝에 붙임)
+  if(!SHOW_DYE_TAB) return;
+  const d = document.createElement('button');
+  d.textContent = DYE_TAB;
+  d.dataset.tab = DYE_TAB;
+  if(currentTab === DYE_TAB) d.classList.add('active');
+  d.addEventListener('click', () => { currentTab = DYE_TAB; currentFolder = null; renderTabs(); renderGrid(); updateSaveBar(); });
+  tabsEl.appendChild(d);
+}
+
+function updateSaveBar(){
+  const nameEl = document.getElementById('save-cat-name');
+  if(nameEl) nameEl.textContent = currentTab;
+}
+
+function renderGrid(){
+  // 염색비 탭은 자재 그리드가 아니라 계산기 — 검색/저장바 숨기고 분기
+  document.body.classList.toggle('on-dye', currentTab === DYE_TAB);
+  if(currentTab === DYE_TAB){ gridEl.innerHTML = ''; renderDyeCalc(); return; }
+  gridEl.innerHTML = '';
+  if(!CATEGORIES.length){
+    infoEl.textContent = '';
+    gridEl.innerHTML = '<div class="empty">자재 리스트 준비 중입니다.</div>';
+    return;
+  }
+  const q = (searchEl.value || '').trim().toLowerCase();
+  const folderTab = isFolderCat(currentTab);
+
+  // ① 섹션 뷰 (폴더형 탭 + 검색어 없음): 폴더별 단락 헤더 + 카드 나열 (드릴다운 X)
+  if(folderTab && !q){
+    const folders = state[currentTab] || [];
+    infoEl.textContent = `${folders.length}개 섹션 · ${catCount(currentTab)}건`;
+    for(const f of folders){
+      gridEl.appendChild(buildSectionHead(f));
+      (f.items || []).forEach((it, i) => gridEl.appendChild(buildCard(it, i, false, f.folder)));
+      if(IS_ADMIN){
+        const tile = document.createElement('div');
+        tile.className = 'add-tile';
+        tile.setAttribute('data-admin','');
+        tile.innerHTML = `<div class="plus">＋</div><div class="label">새 자재 추가</div><div class="hint">${escapeHtml(f.folder)}</div>`;
+        tile.addEventListener('click', () => openAdd(f.folder));
+        gridEl.appendChild(tile);
+      }
+    }
+    return;
+  }
+
+  // 보여줄 자재 배열 결정
+  let items, readonlyFlat = false;
+  if(folderTab && q){
+    // 폴더형 탭 검색 → 모든 폴더의 자재를 평탄화해서 검색 (편집은 폴더 안에서)
+    items = flatItems(currentTab); readonlyFlat = true;
+  }else if(folderTab && currentFolder){
+    const f = (state[currentTab]||[]).find(x => x.folder === currentFolder);
+    if(!f){ currentFolder = null; return renderGrid(); }
+    items = f.items;
+    gridEl.appendChild(buildCrumb(f.folder));
+  }else{
+    items = state[currentTab] || [];
+  }
+
+  const filtered = !q ? items : items.filter(it =>
+    (it.code||'').toLowerCase().includes(q) ||
+    (it.name||'').toLowerCase().includes(q) ||
+    (it.price||'').toLowerCase().includes(q)
+  );
+  infoEl.textContent = q ? `${filtered.length} / ${catCount(currentTab)}건` : `${items.length}건`;
+
+  if(filtered.length === 0){
+    const empty = document.createElement('div');
+    empty.className = 'empty';
+    empty.innerHTML = q
+      ? `<h3>검색 결과가 없어요</h3><p>'${escapeHtml(q)}'에 해당하는 자재를 찾을 수 없습니다.</p>`
+      : `<h3>아직 등록된 자재가 없어요</h3><p>우측 상단 <b>＋ 자재 추가</b> 버튼으로 등록하세요.</p>`;
+    gridEl.appendChild(empty);
+    return;
+  }
+
+  for(const it of filtered){
+    const realIndex = items.indexOf(it);
+    gridEl.appendChild(buildCard(it, realIndex, readonlyFlat));
+  }
+
+  // "+ 새 자재" 타일 (admin, 검색X). 폴더형 탭은 폴더 안에서만.
+  if(IS_ADMIN && !q && !(folderTab && !currentFolder)){
+    const tile = document.createElement('div');
+    tile.className = 'add-tile';
+    tile.setAttribute('data-admin','');
+    tile.innerHTML = `
+      <div class="plus">＋</div>
+      <div class="label">새 자재 추가</div>
+      <div class="hint">${folderTab ? escapeHtml(currentFolder) : escapeHtml(currentTab)}</div>
+    `;
+    tile.addEventListener('click', openAdd);
+    gridEl.appendChild(tile);
+  }
+}
+
+function buildSectionHead(f){
+  const h = document.createElement('div');
+  h.className = 'section-head';
+  const cnt = (f.items||[]).length;
+  h.innerHTML =
+    `<span class="sh-name">${escapeHtml(f.folder)}</span>` +
+    (f.code ? `<span class="sh-code">${escapeHtml(f.code)}</span>` : '') +
+    `<span class="sh-count">${cnt}건</span>`;
+  return h;
+}
+
+function buildFolderCard(f){
+  const card = document.createElement('div');
+  card.className = 'card folder-card';
+  const cnt = (f.items||[]).length;
+  const inner = document.createElement('div');
+  inner.className = 'folder-inner';
+  inner.innerHTML = `
+    <div class="folder-ico">📁</div>
+    <div class="folder-name">${escapeHtml(f.folder)}</div>
+    ${f.code ? `<div class="folder-code">${escapeHtml(f.code)}</div>` : ''}
+    <div class="folder-count">${cnt}건</div>`;
+  card.appendChild(inner);
+  card.addEventListener('click', () => { currentFolder = f.folder; renderGrid(); });
+  return card;
+}
+
+function buildCrumb(name){
+  const bar = document.createElement('div');
+  bar.className = 'crumb';
+  bar.innerHTML = `<button type="button" class="crumb-back">← ${escapeHtml(currentTab)}</button><span class="crumb-here">${escapeHtml(name)}</span>`;
+  bar.querySelector('.crumb-back').addEventListener('click', () => { currentFolder = null; renderGrid(); });
+  return bar;
+}
+
+function buildCard(item, index, readonly, folderName){
+  const card = document.createElement('div');
+  card.className = 'card';
+  const imgWrap = document.createElement('div');
+  imgWrap.className = 'img-wrap';
+  if(item.images && item.images[0]){
+    const img = document.createElement('img');
+    img.src = item.images[0];
+    img.alt = item.code || item.name || '';
+    img.loading = 'lazy';
+    img.addEventListener('error', () => {
+      img.remove();
+      const ph = document.createElement('div');
+      ph.className = 'placeholder';
+      ph.textContent = '이미지를 불러올 수 없어요';
+      imgWrap.appendChild(ph);
+    });
+    const multi = item.images.length > 1;
+    imgWrap.addEventListener('click', () => openLightbox(multi ? item.images : img.src));
+    imgWrap.appendChild(img);
+    if(multi){
+      const badge = document.createElement('div');
+      badge.className = 'multi-badge';
+      badge.textContent = `📷 ${item.images.length}`;
+      imgWrap.appendChild(badge);
+    }
+  }else if(item.priceTable){
+    imgWrap.classList.add('table-thumb');
+    const ph = document.createElement('div');
+    ph.className = 'placeholder table-ph';
+    ph.innerHTML = '<div class="tt-label">BEANPOLE _sns</div>';
+    imgWrap.appendChild(ph);
+    imgWrap.addEventListener('click', () => openTableModal(item));
+  }else{
+    const ph = document.createElement('div');
+    ph.className = 'placeholder';
+    ph.textContent = '이미지 없음';
+    imgWrap.appendChild(ph);
+  }
+  const body = document.createElement('div');
+  body.className = 'body';
+  if(item.code){
+    const c = document.createElement('div');
+    c.className = 'code';
+    c.innerHTML = `<span class="fld-label">품번</span>${escapeHtml(item.code)}`;
+    body.appendChild(c);
+  }
+  let unitPrice = null;
+  if(item.name){
+    const ex = extractUnitFromName(item.name);   // 품명 속 @단가 분리
+    unitPrice = ex.unit;
+    const n = document.createElement('div');
+    n.className = 'name';
+    n.innerHTML = `<span class="fld-label">품명</span>${escapeHtml(ex.name)}`;
+    body.appendChild(n);
+  }
+  if(unitPrice){
+    const u = document.createElement('div');
+    u.className = 'price';
+    u.innerHTML = `<span class="fld-label">단가</span>${escapeHtml(cleanNotes(unitPrice))}`;
+    body.appendChild(u);
+  }
+  if(item.price){
+    const p = document.createElement('div');
+    p.className = 'price';
+    p.innerHTML = `<span class="fld-label">${priceFieldLabel(item.price)}</span>${escapeHtml(cleanNotes(item.price))}`;
+    body.appendChild(p);
+  }
+  if(item.priceTable){
+    const btn = document.createElement('button');
+    btn.className = 'table-btn';
+    btn.type = 'button';
+    btn.textContent = '표 보기 ▸';
+    btn.addEventListener('click', e => { e.stopPropagation(); openTableModal(item); });
+    body.appendChild(btn);
+  }
+  if(!item.code && !item.name && !item.price && !item.priceTable){
+    const n = document.createElement('div');
+    n.className = 'name';
+    n.style.color = 'var(--muted)';
+    n.textContent = '(이름 미지정)';
+    body.appendChild(n);
+  }
+
+  card.appendChild(imgWrap);
+  card.appendChild(body);
+
+  if(IS_ADMIN && !readonly){
+    const actions = document.createElement('div');
+    actions.className = 'actions';
+    actions.setAttribute('data-admin','');
+    const btnEdit = document.createElement('button');
+    btnEdit.title = '편집';
+    btnEdit.innerHTML = '✎';
+    btnEdit.addEventListener('click', e => { e.stopPropagation(); openEdit(index, folderName); });
+    const btnDel = document.createElement('button');
+    btnDel.className = 'del';
+    btnDel.title = '삭제';
+    btnDel.innerHTML = '🗑';
+    btnDel.addEventListener('click', e => { e.stopPropagation(); removeItem(index, folderName); });
+    actions.appendChild(btnEdit);
+    actions.appendChild(btnDel);
+    card.appendChild(actions);
+  }
+  return card;
+}
+
+function escapeHtml(s){return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+// 세번째 줄(price 필드) 내용에 따라 라벨 자동 선택
+function priceFieldLabel(v){
+  const s = (v||'').toString();
+  if(/@|원|단가/.test(s)) return '단가';
+  if(/\d\s*MM|[*×xX]\s*\d|규격|사이즈/.test(s)) return '사이즈';
+  return '비고';
+}
+// 품명 속 @단가 괄호 분리 → {name: @빠진 품명, unit: '@200' / '1EA @675' / null}
+function extractUnitFromName(name){
+  const s = (name||'').toString();
+  const m = s.match(/\(([^)]*@[^)]*)\)/);
+  if(!m) return {name:s, unit:null};
+  const unit = m[1].trim();
+  const cleaned = s.replace(m[0],'').replace(/\s{2,}/g,' ').trim();
+  return {name:cleaned, unit};
+}
+// 괄호 제거 + 여러 항목 " / "로 통일 (예: "(대금)(신주)" → "대금 / 신주", "(니켈무광)걸어도금" → "니켈무광 / 걸어도금")
+function cleanNotes(s){
+  return (s||'').toString()
+    .replace(/\)\s*\(/g,' / ')
+    .replace(/\)\s*(?=\S)/g,' / ')
+    .replace(/[()]/g,'')
+    .replace(/\s*\/\s*/g,' / ')
+    .replace(/\s{2,}/g,' ')
+    .trim();
+}
+
+/* ====== ADD / EDIT MODAL ====== */
+const modal = $('#modal');
+const form = $('#form');
+const imgInput = $('#img-input');
+const imgPreview = $('#img-preview');
+const imgEmpty = $('#img-empty');
+const imgPick = $('#img-pick');
+const imgPickBtn = $('#img-pick-btn');
+const fieldsStack = $('#fields-stack');
+
+function openAdd(folderName){
+  if(!IS_ADMIN) return;
+  if(isFolderCat(currentTab)){
+    // 폴더형 탭은 반드시 섹션(폴더)을 지정해서 추가
+    if(typeof folderName !== 'string'){
+      alert('각 섹션 하단의 「＋ 새 자재 추가」 타일을 눌러 폴더를 지정해 추가해주세요.');
+      return;
+    }
+    editFolder = folderName;
+  }else{
+    editFolder = null;
+  }
+  editingIndex = -1;
+  pendingImageDataUrl = null;
+  $('#modal-title').textContent = `${editFolder || currentTab} — 새 자재 추가`;
+  form.reset();
+  setPreview(null);
+  modal.hidden = false;
+}
+
+function openEdit(idx, folderName){
+  if(!IS_ADMIN) return;
+  editFolder = (typeof folderName === 'string') ? folderName : null;
+  const it = currentItemsArray()[idx];
+  editingIndex = idx;
+  pendingImageDataUrl = null;
+  $('#modal-title').textContent = `${currentTab} — 자재 편집`;
+  form.elements['code'].value = it.code || '';
+  form.elements['name'].value = it.name || '';
+  form.elements['price'].value = it.price || '';
+  setPreview(it.images && it.images[0] || null);
+  // Always show fields when editing existing item
+  fieldsStack.classList.add('show');
+  modal.hidden = false;
+}
+
+function closeModal(){
+  modal.hidden = true;
+  editFolder = null;
+}
+
+function setPreview(src){
+  if(src){
+    imgPreview.src = src;
+    imgPreview.hidden = false;
+    imgEmpty.style.display = 'none';
+    imgPickBtn.hidden = false;
+    imgPick.classList.add('has-image');
+    fieldsStack.classList.add('show');
+  }else{
+    imgPreview.removeAttribute('src');
+    imgPreview.hidden = true;
+    imgEmpty.style.display = 'flex';
+    imgPickBtn.hidden = true;
+    imgPick.classList.remove('has-image');
+    // Still show fields so editing works without image required
+    fieldsStack.classList.remove('show');
+  }
+}
+
+function loadImageFile(file){
+  if(!file || !file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    pendingImageDataUrl = ev.target.result;
+    setPreview(pendingImageDataUrl);
+    // After image loads, focus the code field (auto flow)
+    setTimeout(()=>{
+      const codeInput = form.elements['code'];
+      if(codeInput && !codeInput.value) codeInput.focus();
+    }, 350);
+  };
+  reader.readAsDataURL(file);
+}
+
+imgInput.addEventListener('change', e => {
+  const file = e.target.files && e.target.files[0];
+  if(file) loadImageFile(file);
+  e.target.value = '';
+});
+
+// Click anywhere in the picker area opens file dialog
+imgPick.addEventListener('click', () => imgInput.click());
+
+// Drag & drop
+['dragenter','dragover'].forEach(ev =>
+  imgPick.addEventListener(ev, e => { e.preventDefault(); imgPick.classList.add('dragover'); })
+);
+['dragleave','drop'].forEach(ev =>
+  imgPick.addEventListener(ev, e => { e.preventDefault(); imgPick.classList.remove('dragover'); })
+);
+imgPick.addEventListener('drop', e => {
+  const file = e.dataTransfer.files && e.dataTransfer.files[0];
+  if(file) loadImageFile(file);
+});
+
+// Paste image directly
+modal.addEventListener('paste', e => {
+  if(modal.hidden) return;
+  const item = [...(e.clipboardData?.items || [])].find(it => it.type.startsWith('image/'));
+  if(item){
+    const file = item.getAsFile();
+    if(file) loadImageFile(file);
+  }
+});
+
+// Enter on form fields → jump to next field, Enter on last → submit
+form.addEventListener('keydown', e => {
+  if(e.key === 'Enter' && e.target.tagName === 'INPUT'){
+    e.preventDefault();
+    const inputs = [...form.querySelectorAll('input[name]')];
+    const i = inputs.indexOf(e.target);
+    if(i >= 0 && i < inputs.length - 1){
+      inputs[i+1].focus();
+    }else{
+      form.requestSubmit();
+    }
+  }
+});
+
+// 가격칸에 숫자만 입력하면 (@숫자) 형태로 자동 변환.
+// 예) "145" / "@145" / "145원" -> "(@145)"
+// 글자/치수 등이 섞여 있으면(예 "60MM*35MM", "검정 @280 칼라 @400") 입력 그대로 둠.
+function formatPrice(raw){
+  const s = (raw||'').toString().trim();
+  if(!s) return '';
+  const m = s.match(/^@?\s*(\d+)\s*원?$/);
+  return m ? '(@'+m[1]+')' : s;
+}
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const fd = new FormData(form);
+  const data = {
+    code: (fd.get('code')||'').toString().trim(),
+    name: (fd.get('name')||'').toString().trim(),
+    price: formatPrice(fd.get('price')),
+  };
+  if(editingIndex < 0){
+    // Add new
+    const item = { ...data, images: pendingImageDataUrl ? [pendingImageDataUrl] : [] };
+    currentItemsArray().push(item);
+  }else{
+    const it = currentItemsArray()[editingIndex];
+    Object.assign(it, data);
+    if(pendingImageDataUrl){
+      it.images = [pendingImageDataUrl];
+    }else if(imgPreview.hidden){
+      it.images = [];
+    }
+  }
+  saveState();
+  renderTabs();
+  renderGrid();
+  closeModal();
+  toast(editingIndex < 0 ? '추가되었습니다' : '저장되었습니다');
+});
+
+$('#modal-close').addEventListener('click', closeModal);
+$('#form-cancel').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+
+/* ====== DELETE ====== */
+function removeItem(idx, folderName){
+  if(!IS_ADMIN) return;
+  editFolder = (typeof folderName === 'string') ? folderName : null;
+  const arr = currentItemsArray();
+  const it = arr[idx];
+  const label = it.code || it.name || '(이름 없음)';
+  if(!confirm(`'${label}' 항목을 삭제할까요?`)){ editFolder = null; return; }
+  arr.splice(idx, 1);
+  editFolder = null;
+  saveState();
+  renderTabs();
+  renderGrid();
+  toast('삭제되었습니다');
+}
+
+/* ====== TOOLBAR ====== */
+$('#btn-add').addEventListener('click', openAdd);
+$('#fab').addEventListener('click', openAdd);
+
+// Admin toggle: viewer면 진입, admin이면 종료 (둘 다 같은 버튼)
+(function setupAdminToggle(){
+  const btn = $('#btn-admin-toggle');
+  if(!btn) return;
+  if(IS_ADMIN){
+    btn.textContent = '🔓 관리자 종료';
+    btn.classList.remove('primary');
+  }else{
+    btn.textContent = '🔒 관리자 모드';
+    btn.classList.add('primary');
+  }
+  btn.addEventListener('click', () => {
+    if(IS_ADMIN){
+      if(dirty && !confirm('저장 안 된 변경사항이 있어요. 그래도 관리자 모드를 종료할까요?')) return;
+      localStorage.removeItem(ADMIN_FLAG);
+      location.reload();
+    }else{
+      const pw = prompt('관리자 비밀번호:');
+      if(pw == null) return;
+      if(checkAdminPassword(pw)){
+        localStorage.setItem(ADMIN_FLAG, '1');
+        location.reload();
+      }else{
+        alert('비밀번호가 일치하지 않습니다.');
+      }
+    }
+  });
+})();
+
+// Yellow-bar 저장: localStorage 백업 + GitHub에 push
+$('#btn-save-cat').addEventListener('click', async () => {
+  saveState();
+  const ok = await pushWithFeedback();
+  if(!ok) toast('로컬에는 저장됨 — 다시 시도 또는 백업 다운로드 권장');
+});
+
+// Yellow-bar 저장 후 나가기: localStorage + GitHub push + admin 종료
+$('#btn-save-exit').addEventListener('click', async () => {
+  if(!confirm('저장 후 관리자 모드를 종료합니다. 진행할까요?')) return;
+  saveState();
+  const ok = await pushWithFeedback();
+  if(!ok){
+    if(!confirm('GitHub 동기화 실패. 그래도 관리자 모드 종료할까요?\n(로컬 변경사항은 다음 진입 시 복구 옵션 나옴)')) return;
+  }
+  setTimeout(() => {
+    localStorage.removeItem(ADMIN_FLAG);
+    location.reload();
+  }, 400);
+});
+
+// Toolbar 「💾 백업 다운로드」: 현재 state가 박힌 HTML을 로컬로 다운받기 (안전망)
+$('#btn-save-file').addEventListener('click', () => {
+  saveAsHtml();
+});
+
+// Toolbar 「🔑 GitHub 토큰」: PAT 설정/변경/삭제
+$('#btn-token').addEventListener('click', () => {
+  const cur = getPAT();
+  const status = cur ? `현재 등록된 토큰: ${cur.slice(0,8)}…${cur.slice(-4)}` : '⚠️ 등록된 토큰 없음';
+  const action = prompt(
+    `${status}\n\n` +
+    `[설정] 빈칸이면 새로 입력하라는 창 뜸\n` +
+    `[삭제] "delete" 입력 후 확인\n` +
+    `[취소] 취소 누르기`
+  );
+  if(action == null) return;
+  if(action.trim().toLowerCase() === 'delete'){
+    clearPAT();
+    toast('GitHub 토큰 삭제됨');
+    return;
+  }
+  promptPAT();
+  if(getPAT()) toast('GitHub 토큰 저장됨');
+});
+
+// Print
+$('#btn-print').addEventListener('click', () => {
+  toast('인쇄 창에서 프린터를 선택하세요');
+  setTimeout(() => window.print(), 300);
+});
+
+// PDF — same browser print dialog; user selects "PDF로 저장"
+$('#btn-pdf').addEventListener('click', () => {
+  toast('인쇄 창에서 "PDF로 저장" 선택하세요');
+  setTimeout(() => window.print(), 300);
+});
+
+// Excel export (XLSX via SheetJS)
+$('#btn-excel').addEventListener('click', () => {
+  if(typeof XLSX === 'undefined'){
+    alert('엑셀 저장 기능을 사용하려면 인터넷 연결이 필요합니다.');
+    return;
+  }
+  const wb = XLSX.utils.book_new();
+  for(const cat of CATEGORIES){
+    const rows = flatItems(cat).map((it, i) => ({
+      'No.': i + 1,
+      '폴더': it._folder || '',
+      '코드': it.code || '',
+      '이름': it.name || '',
+      '가격 / 스펙': it.price || '',
+      '이미지 수': (it.images || []).length,
+    }));
+    const ws = XLSX.utils.json_to_sheet(rows.length ? rows : [{'No.':'', '폴더':'', '코드':'', '이름':'', '가격 / 스펙':'', '이미지 수':''}]);
+    // Auto-fit-ish column widths
+    ws['!cols'] = [
+      { wch: 5 }, { wch: 12 }, { wch: 22 }, { wch: 40 }, { wch: 28 }, { wch: 8 },
+    ];
+    // Sheet name max 31 chars, no special chars
+    const safe = cat.replace(/[\\\/\?\*\[\]:]/g,'_').slice(0,31);
+    XLSX.utils.book_append_sheet(wb, ws, safe);
+  }
+  const ts = new Date().toISOString().slice(0,10).replace(/-/g,'');
+  XLSX.writeFile(wb, `Beanpole_Materials_${ts}.xlsx`);
+  toast('엑셀 파일 저장 완료');
+});
+
+/* ====== SEARCH ====== */
+searchEl.addEventListener('input', renderGrid);
+
+/* 로고 클릭 → 처음 화면(첫 탭, 검색 초기화, 맨 위) */
+function goHome(){
+  currentTab = CATEGORIES[0]; currentFolder = null;
+  searchEl.value = '';
+  renderTabs(); renderGrid(); updateSaveBar();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+const brandEl = $('#brand-home');
+brandEl.addEventListener('click', goHome);
+brandEl.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); goHome(); } });
+
+/* ====== LIGHTBOX ====== */
+const lightbox = $('#lightbox');
+const lightboxImg = $('#lightbox-img');
+const lightboxCounter = $('#lightbox-counter');
+let lbImgs = [], lbIdx = 0;
+function openLightbox(srcOrArr){
+  lbImgs = Array.isArray(srcOrArr) ? srcOrArr.slice() : [srcOrArr];
+  lbIdx = 0;
+  showLbImg();
+  lightbox.hidden = false;
+}
+function showLbImg(){
+  lightboxImg.src = lbImgs[lbIdx];
+  if(lbImgs.length > 1){
+    lightboxCounter.textContent = `${lbIdx+1} / ${lbImgs.length} · 탭하면 다음 ▸`;
+    lightboxCounter.hidden = false;
+  }else{
+    lightboxCounter.hidden = true;
+  }
+}
+function closeLightbox(){ lightbox.hidden = true; lightboxImg.removeAttribute('src'); lbImgs = []; }
+// 배경 클릭 = 닫기
+lightbox.addEventListener('click', closeLightbox);
+// 이미지 클릭 = 다음 장(여러 장일 때), 닫기 방지
+lightboxImg.addEventListener('click', e => {
+  if(lbImgs.length > 1){ e.stopPropagation(); lbIdx = (lbIdx + 1) % lbImgs.length; showLbImg(); }
+});
+
+/* ====== PRICE TABLE MODAL ====== */
+const tableModal = $('#table-modal');
+const tableModalTitle = $('#table-modal-title');
+const tableModalBody = $('#table-modal-body');
+function openTableModal(item){
+  const t = item.priceTable;
+  if(!t) return;
+  tableModalTitle.textContent = item.name || '단가표';
+  let html = '<table class="ptable"><thead><tr>';
+  (t.headers||[]).forEach(h => { html += '<th>'+escapeHtml(h)+'</th>'; });
+  html += '</tr></thead><tbody>';
+  (t.rows||[]).forEach(r => {
+    html += '<tr>';
+    r.forEach(c => { html += '<td>'+escapeHtml(c)+'</td>'; });
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  tableModalBody.innerHTML = html;
+  tableModal.hidden = false;
+}
+function closeTableModal(){ tableModal.hidden = true; tableModalBody.innerHTML = ''; }
+$('#table-modal-close').addEventListener('click', closeTableModal);
+tableModal.addEventListener('click', e => { if(e.target === tableModal) closeTableModal(); });
+
+/* ====== TOAST ====== */
+let toastTimer;
+function toast(msg){
+  const el = $('#toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove('show'), 1800);
+}
+
+/* ====== KEYBOARD ====== */
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){
+    if(!lightbox.hidden){ closeLightbox(); }
+    else if(!tableModal.hidden){ closeTableModal(); }
+    else if(!modal.hidden){ closeModal(); }
+  }
+});
+
+
+/* ====== 염색비 계산기 ======
+   과금 단위가 공정마다 다르다:
+     염색 = 무게(kg)  /  팁작업 = 개수(pcs)
+   염색은 롤을 통째로 넣으므로 "개수"는 염색 다음 공정(재단)에서 처음 생긴다.
+   → 개수 주문이 들어오면 개수 → 길이 → 롤 수(올림) → 무게 로 역산해야 염색비가 나온다. */
+const DYE_TAB = '🧮 염색비';
+const SHOW_DYE_TAB = false;   // 빈폴맨: 염색비 탭 안 씀
+const YD_CM = 91.44;
+let dyeUI = null;
+
+function dyeCfg(){
+  const d = (state && state._dyeing) || {};
+  return {
+    fee: Object.assign({baseWon:120000, baseKg:10, overWonPerKg:15000}, d.fee || {}),
+    def: Object.assign({cutCm:135}, d.defaults || {}),
+    items: (Array.isArray(d.items) ? d.items : []).filter(x => x && x.rollKg > 0)
+  };
+}
+const kg3    = v => Math.round(v * 1000) / 1000;   // 부동소수 오차 정리 (9.000000002 → 9)
+const ceilKg = v => Math.ceil(kg3(v) - 1e-9);
+const fmtWon = n => Math.round(n).toLocaleString('ko-KR');
+const fmtNum = n => Math.round(n).toLocaleString('ko-KR');
+const fmtKg  = v => kg3(v).toFixed(2);
+
+/* 염색비 — baseKg(10kg)까지는 정액, 초과분만 1kg 단위 올림 과금 */
+function dyeFee(totalKg, fee){
+  const over = Math.max(0, ceilKg(totalKg) - fee.baseKg);
+  return { over, billKg: fee.baseKg + over, won: fee.baseWon + over * fee.overWonPerKg };
+}
+/* 품목 단위 — 'yd'면 재단하지 않고 길이 그대로 센다(헤링본 등), 아니면 재단해서 개수로 센다 */
+const dyeIsYd = it => it && it.unit === 'yd';
+const dyeU    = it => dyeIsYd(it) ? 'yd' : '개';
+/* 1롤에서 나오는 수량 — pcs 품목은 재단 개수, yd 품목은 롤 길이 그대로 */
+function dyeQtyPerRoll(it, cutCm){
+  if(dyeIsYd(it)) return it.rollYd || 200;
+  return cutCm > 0 ? Math.max(0, Math.floor((it.rollYd || 200) * YD_CM / cutCm)) : 0;
+}
+/* 출고 형태 — 'roll'이면 재단 없이 롤 그대로 나가므로 길이(yd)로 센다 */
+const dyeIsRoll = ship => ship === 'roll';
+const dyeShipU  = (it, ship) => dyeIsRoll(ship) ? 'yd' : dyeU(it);
+const dyeShipQtyPerRoll = (it, ship, cutCm) => dyeIsRoll(ship) ? (it.rollYd || 200) : dyeQtyPerRoll(it, cutCm);
+const dyeShipLabel = (it, ship, cut) => dyeIsRoll(ship) ? '롤 그대로' : (dyeIsYd(it) ? '길이(yd)' : `${cut}cm 재단`);
+/* 기본요금(10kg) 안에 들어가는 최대 롤 수 */
+function dyeMaxRolls(rollKg, fee){ return Math.max(1, Math.floor(kg3(fee.baseKg / rollKg) + 1e-9)); }
+/* 여러 번 나눠 보낼 때 최저가 조합 (앞 배치는 10kg까지 꽉 채우고 마지막 배치에 나머지) */
+function dyeBestSplit(rolls, rollKg, fee){
+  const per = dyeMaxRolls(rollKg, fee);
+  let best = null;
+  for(let n = 1; n <= Math.ceil(rolls / per); n++){
+    const last = rolls - Math.min(per * (n - 1), rolls);
+    if(last <= 0) break;
+    const w = (n - 1) * fee.baseWon + dyeFee(last * rollKg, fee).won;
+    if(!best || w < best.won) best = { n, won: w, per, last };
+  }
+  return best;
+}
+
+/* 품목 드롭다운 — 단위별로 묶어서 표시 */
+function dyeOptions(items, selIdx){
+  const sel = (selIdx === undefined) ? dyeUI.idx : selIdx;
+  const opt = (x,i) => `<option value="${i}"${i===sel?' selected':''}>${escapeHtml(x.name)} — ${fmtKg(x.rollKg)}kg/롤</option>`;
+  const pcs = [], yd = [];
+  items.forEach((x,i) => (dyeIsYd(x) ? yd : pcs).push(opt(x,i)));
+  if(!pcs.length || !yd.length) return pcs.concat(yd).join('');
+  return `<optgroup label="스트링 · 개 단위">${pcs.join('')}</optgroup>`
+       + `<optgroup label="헤링본 테이프 · yd 단위">${yd.join('')}</optgroup>`;
+}
+
+/* ===== 조합(여러 품목 한 통에 염색) =====
+   염색비는 배치 전체 무게로 매겨지므로, 여러 품목을 같이 넣으면 기본요금을 나눠 쓴다.
+   각 품목이 실제로 부담한 금액 = 총 염색비 × (그 품목 중량 / 전체 중량) — 중량 비례 배분. */
+function dyeCombo(rows, c, defCut){
+  const fee = c.fee;
+  const parts = rows.map(r => {
+    const it = c.items[r.idx];
+    const rolls = Math.max(1, Math.round(r.rolls));
+    const kg = kg3(rolls * it.rollKg);
+    // 재단길이는 품목마다 다를 수 있다 (같은 통에 넣어도 자르는 길이는 제각각)
+    const ship = dyeIsRoll(r.ship) ? 'roll' : 'cut';
+    const cut = (dyeIsYd(it) || ship === 'roll') ? null : (r.cut > 0 ? r.cut : defCut);
+    const yd  = rolls * (it.rollYd || 200);
+    return { it, rolls, kg, cut, yd, ship,
+             qty: rolls * dyeShipQtyPerRoll(it, ship, cut || defCut), u: dyeShipU(it, ship) };
+  });
+  const totalKg = kg3(parts.reduce((s,p) => s + p.kg, 0));
+  const totalRolls = parts.reduce((s,p) => s + p.rolls, 0);
+  const f = dyeFee(totalKg, fee);
+
+  // 중량 비례 배분 (반올림 잔액은 마지막 항목이 흡수 — 합계가 총액과 정확히 일치하도록)
+  let acc = 0;
+  parts.forEach((p,i) => {
+    p.share = (i === parts.length - 1) ? f.won - acc
+            : (totalKg > 0 ? Math.round(f.won * p.kg / totalKg) : 0);
+    acc += p.share;
+    p.per   = p.qty > 0 ? p.share / p.qty : 0;   // 출고 단위당 (개 / 롤 / yd)
+    // 같은 수량을 이 품목만 따로 염색했다면?
+    const alone = dyeFee(p.kg, fee);
+    p.aloneWon = alone.won;
+  });
+  const separateWon = parts.reduce((s,p) => s + p.aloneWon, 0);
+  return { parts, totalKg, totalRolls, f, separateWon, saving: separateWon - f.won };
+}
+
+function renderDyeCalc(){
+  const c = dyeCfg();
+  if(!c.items.length){
+    infoEl.textContent = '';
+    gridEl.innerHTML = '<div class="dye-card"><h3>염색비 계산기</h3>'
+      + '<div class="dye-tip warn">염색비 데이터를 불러오지 못했습니다. ⌘+⇧+R 로 새로고침해 주세요.</div></div>';
+    return;
+  }
+  if(!dyeUI) dyeUI = { idx:0, mode:'pcs', rolls:dyeMaxRolls(c.items[0].rollKg, c.fee),
+                       pcs:1000, cutCm:c.def.cutCm, tableOpen:false,
+                       multi:false, rows:null };
+  if(dyeUI.idx >= c.items.length) dyeUI.idx = 0;
+  if(!dyeUI.rows) dyeUI.rows = [
+    { idx:0, rolls:Math.max(1, Math.floor(dyeMaxRolls(c.items[0].rollKg, c.fee)/2)) },
+    { idx:Math.min(1, c.items.length-1), rolls:Math.max(1, Math.floor(dyeMaxRolls(c.items[Math.min(1,c.items.length-1)].rollKg, c.fee)/2)) },
+  ];
+  dyeUI.rows = dyeUI.rows.filter(r => r.idx < c.items.length);
+  if(!dyeUI.rows.length) dyeUI.rows = [{ idx:0, rolls:1 }];
+  if(dyeUI.multi) return renderDyeCombo(c);
+  const it = c.items[dyeUI.idx], rollYd = it.rollYd || 200;
+  const isYd = dyeIsYd(it), roll = dyeIsRoll(dyeUI.ship), U = dyeShipU(it, dyeUI.ship);
+  const mode = roll ? 'rolls' : dyeUI.mode;
+  infoEl.textContent = `1롤 ${rollYd}yd 고정 · 염색 ${fmtWon(c.fee.baseWon)}원 / ${c.fee.baseKg}kg · 초과 kg당 ${fmtWon(c.fee.overWonPerKg)}원`;
+
+  gridEl.innerHTML = `
+  <div class="dye-wrap">
+    <div class="dye-top">
+      <section class="dye-card">
+        <h3>① 입력</h3>
+        <div class="dye-seg">
+          <button type="button" data-multi="0" class="on">단일 품목</button>
+          <button type="button" data-multi="1">여러 품목 조합</button>
+        </div>
+        <div class="dye-row"><label>품목</label>
+          <select id="dye-item">${dyeOptions(c.items)}</select></div>
+        <div class="dye-row"><label>출고</label>
+          <div class="dye-ship" id="dye-ship">
+            <button type="button" data-ship="cut"${roll?'':' class="on"'}>${isYd ? '길이(yd)로' : '재단해서 개수로'}</button>
+            <button type="button" data-ship="roll"${roll?' class="on"':''}>롤 그대로</button>
+          </div></div>
+        <div class="dye-mode"${roll?' hidden':''}>
+          <button type="button" data-mode="pcs"${mode==='pcs'?' class="on"':''}>필요 ${U==='yd'?'길이':'개수'}로 계산</button>
+          <button type="button" data-mode="rolls"${mode==='rolls'?' class="on"':''}>롤 수로 계산</button>
+        </div>
+        <div class="dye-row"${mode==='pcs'?'':' hidden'}>
+          <label>필요 ${U==='yd'?'길이':'개수'}</label>
+          <input type="number" id="dye-pcs" min="1" step="10" value="${dyeUI.pcs}"><span class="u">${U}</span></div>
+        <div class="dye-row"${mode==='rolls'?'':' hidden'}>
+          <label>롤 수</label>
+          <input type="number" id="dye-rolls" min="1" step="1" value="${dyeUI.rolls}"><span class="u">롤 &middot; ${rollYd}yd</span></div>
+        ${(isYd || roll) ? '' : `<hr class="dye-sep">
+        <div class="dye-row"><label>재단길이</label>
+          <input type="number" id="dye-cut" min="1" step="1" value="${dyeUI.cutCm}"><span class="u">cm / 1개</span></div>`}
+        <div class="dye-row"><span class="hint">${roll ? '재단 없이 롤째 나가는 경우입니다. 단가는 yd당으로 계산됩니다' : '롤은 쪼개서 염색 보낼 수 없어 필요량은 항상 롤 단위로 올림됩니다'}</span></div>
+      </section>
+      <section class="dye-card" id="dye-out"></section>
+    </div>
+    <section class="dye-card">
+      <details class="dye-fold" id="dye-fold"${dyeUI.tableOpen ? ' open' : ''}>
+        <summary>③ 품목별 기준표 — <em>기본요금 ${fmtWon(c.fee.baseWon)}원으로 뽑을 수 있는 최대치</em></summary>
+        <div class="dye-scroll" id="dye-table"></div>
+      </details>
+    </section>
+    <div class="dye-foot">※ 염색비 추가금액 확인을 위한 계산기입니다. 실제 작업 현장에서는 수량에 다소 차이가 발생할 수 있습니다.</div>
+  </div>`;
+
+  const fold = gridEl.querySelector('#dye-fold');
+  if(fold) fold.addEventListener('toggle', () => { dyeUI.tableOpen = fold.open; });
+  const sel = gridEl.querySelector('#dye-item');
+  sel.addEventListener('change', () => { dyeUI.idx = +sel.value; renderDyeCalc(); });
+  gridEl.querySelectorAll('#dye-ship button').forEach(b =>
+    b.addEventListener('click', () => { dyeUI.ship = b.dataset.ship; renderDyeCalc(); }));
+  gridEl.querySelectorAll('.dye-mode button').forEach(b =>
+    b.addEventListener('click', () => { dyeUI.mode = b.dataset.mode; renderDyeCalc(); }));
+  gridEl.querySelectorAll('.dye-seg button').forEach(b =>
+    b.addEventListener('click', () => { dyeUI.multi = b.dataset.multi === '1'; renderDyeCalc(); }));
+  const bindNum = (id, key, min, fb) => {
+    const el = gridEl.querySelector(id); if(!el) return;
+    el.addEventListener('input', () => {
+      const v = parseFloat(el.value);
+      dyeUI[key] = (isFinite(v) && v >= min) ? v : fb;
+      dyeRecalc();
+    });
+  };
+  bindNum('#dye-pcs','pcs',1,1);
+  bindNum('#dye-rolls','rolls',1,1);
+  bindNum('#dye-cut','cutCm',1,c.def.cutCm);
+
+  dyeRecalc();
+  renderDyeTable();
+}
+
+function dyeRecalc(){
+  const out = gridEl.querySelector('#dye-out'); if(!out) return;
+  const c = dyeCfg(), fee = c.fee, it = c.items[dyeUI.idx];
+  const cutCm  = dyeUI.cutCm > 0 ? dyeUI.cutCm : c.def.cutCm;
+  const rollYd = it.rollYd || 200;
+
+  const isYd = dyeIsYd(it), roll = dyeIsRoll(dyeUI.ship), U = dyeShipU(it, dyeUI.ship);
+  const mode = roll ? 'rolls' : dyeUI.mode;
+  const perRoll = dyeShipQtyPerRoll(it, dyeUI.ship, cutCm);
+  const needQty = Math.max(1, Math.round(dyeUI.pcs));
+  const needYd  = isYd ? needQty : needQty * cutCm / YD_CM;
+  const rawRolls = rollYd > 0 ? needYd / rollYd : 0;
+
+  const rolls    = mode === 'pcs'
+                 ? (perRoll > 0 ? Math.ceil(needQty / perRoll) : 0)
+                 : Math.max(1, Math.round(dyeUI.rolls));
+  const totalKg  = kg3(rolls * it.rollKg);
+  const f        = dyeFee(totalKg, fee);
+  const totalQty = rolls * perRoll;
+  const perQty   = totalQty > 0 ? f.won / totalQty : 0;
+  const maxRolls = dyeMaxRolls(it.rollKg, fee);
+
+  /* ----- 계산 흐름 (숫자를 그대로 보여줘서 검산 가능하게) ----- */
+  let chain = '';
+  if(mode === 'pcs'){
+    chain = (isYd ? '' : `<b>${fmtNum(needQty)}개</b> × ${cutCm}cm = ${fmtNum(needQty*cutCm)}cm = <b>${needYd.toFixed(1)}yd</b><br>`)
+          + `${isYd ? `<b>${fmtNum(needQty)}yd</b>` : `${needYd.toFixed(1)}yd`} ÷ ${rollYd}yd = ${rawRolls.toFixed(2)}롤 → 롤은 쪼갤 수 없으니 올림 <b>${rolls}롤</b><br>`
+          + `${rolls}롤 × ${fmtKg(it.rollKg)}kg = <b>${fmtKg(totalKg)}kg</b> → 청구 <b>${f.billKg}kg</b><br>`
+          + `${rolls}롤 × ${fmtNum(perRoll)}${U} = <b>${fmtNum(totalQty)}${U}</b>`
+          + (totalQty>needQty ? ` (주문보다 ${fmtNum(totalQty-needQty)}${U} 더 나옴)` : '');
+  }else{
+    chain = `<b>${rolls}롤</b> × ${rollYd}yd = <b>${fmtNum(rolls*rollYd)}yd</b><br>`
+          + ((isYd || roll) ? '' : `÷ ${cutCm}cm = 롤당 <b>${fmtNum(perRoll)}개</b> → 총 <b>${fmtNum(totalQty)}개</b><br>`)
+          + `${rolls}롤 × ${fmtKg(it.rollKg)}kg = <b>${fmtKg(totalKg)}kg</b> → 청구 <b>${f.billKg}kg</b>`
+          + (roll ? `<br>재단 없이 롤째 출고 → 염색비 ${fmtWon(f.won)}원 ÷ ${fmtNum(totalQty)}yd = yd당 <b>${fmtWon(perQty)}원</b>` : '');
+  }
+
+  /* ----- 여유 / 경고 ----- */
+  const pct = Math.min(100, totalKg / fee.baseKg * 100);
+  const overBase = totalKg > fee.baseKg;
+  let tips = '';
+
+  if(!overBase){
+    const room = kg3(fee.baseKg - totalKg);
+    const addRolls = Math.floor(kg3(room / it.rollKg) + 1e-9);
+    if(addRolls >= 1){
+      tips += `<div class="dye-tip ok">💡 <b>${fmtKg(room)}kg 여유</b> — 같은 염색비 ${fmtWon(fee.baseWon)}원으로 `
+            + `<span class="big">${addRolls}롤 (${fmtNum(addRolls*perRoll)}${U})</span> 더 넣을 수 있습니다.<br>`
+            + `지금 ${U}당 ${fmtWon(perQty)}원 → 꽉 채우면 ${U}당 <b>${fmtWon(fee.baseWon/((rolls+addRolls)*perRoll))}원</b>`
+            + ` (${Math.round((1 - (fee.baseWon/((rolls+addRolls)*perRoll))/perQty)*100)}% 절감)</div>`;
+    }else{
+      tips += `<div class="dye-tip ok">✅ 기본요금 구간을 거의 꽉 채웠습니다. ${U}당 염색비 최적 상태.</div>`;
+    }
+  }else{
+    const saving = f.won - fee.baseWon;
+    const shortQty = totalQty - maxRolls * perRoll;
+    tips += `<div class="dye-tip warn">⚠️ ${fee.baseKg}kg를 <b>${fmtKg(totalKg - fee.baseKg)}kg 초과</b> → 초과 ${f.over}kg × ${fmtWon(fee.overWonPerKg)}원 = <b>+${fmtWon(f.won - fee.baseWon)}원</b><br>`
+          + `<b>${maxRolls}롤(${fmtNum(maxRolls*perRoll)}${U})</b>로 줄이면 ${fmtWon(fee.baseWon)}원 — <span class="big">${fmtWon(saving)}원 절약</span>`
+          + (shortQty > 0 ? `. 단 ${fmtNum(shortQty)}${U} 줄어듭니다.` : '.') + `</div>`;
+    const best = dyeBestSplit(rolls, it.rollKg, fee);
+    if(best && best.n > 1 && best.won < f.won){
+      tips += `<div class="dye-tip info">📦 수량을 유지하려면 <b>${best.n}회로 나눠</b> 염색 의뢰: `
+            + `${fmtWon(best.won)}원 (<b>${fmtWon(f.won - best.won)}원 절약</b>)<br>`
+            + `배분 — ${best.per}롤씩 ${best.n-1}회 + 마지막 ${best.last}롤`
+            + `<br><span style="opacity:.75">기본요금이 ${fmtWon(fee.baseWon)}원인데 초과 단가(kg당 ${fmtWon(fee.overWonPerKg)}원)가 기본 단가(kg당 ${fmtWon(fee.baseWon/fee.baseKg)}원)보다 비싸서 생기는 현상입니다.</span></div>`;
+    }
+  }
+
+  out.innerHTML = `
+    <h3>② 결과 — <em>${escapeHtml(it.name)}</em></h3>
+    <div class="dye-kpi">
+      <div><div class="k">투입 롤</div><div class="v">${fmtNum(rolls)}<s>롤</s></div></div>
+      <div><div class="k">투입 중량</div><div class="v">${fmtKg(totalKg)}<s>kg</s></div></div>
+      <div><div class="k">청구 중량</div><div class="v">${f.billKg}<s>kg</s></div></div>
+      <div class="big"><div class="k">염색비</div><div class="v">${fmtWon(f.won)}<s>원</s></div></div>
+      <div><div class="k">나오는 수량</div><div class="v">${fmtNum(totalQty)}<s>${U}</s></div></div>
+      <div class="hi"><div class="k">${U}당 염색비</div><div class="v">${fmtWon(perQty)}<s>원</s></div></div>
+    </div>
+    <div class="dye-gauge-wrap">
+      <div class="dye-gauge"><i style="width:${pct}%;background:${overBase?'#c0392b':(pct>85?'#5b8a3c':'#8fae6e')}"></i></div>
+      <div class="dye-gauge-lbl"><span>${fmtKg(totalKg)}kg 투입</span><span>기본요금 한도 ${fee.baseKg}kg</span></div>
+    </div>
+    ${tips}
+    <div class="dye-chain">${chain}</div>`;
+}
+
+function renderDyeCombo(c){
+  const fee = c.fee;
+  const cutCm = dyeUI.cutCm > 0 ? dyeUI.cutCm : c.def.cutCm;
+  infoEl.textContent = `여러 품목을 한 통에 같이 염색 — 기본요금 ${fmtWon(fee.baseWon)}원 / ${fee.baseKg}kg 를 나눠 씁니다`;
+
+  const rowsHtml = dyeUI.rows.map((r,i) => {
+    const it = c.items[r.idx], isYd = dyeIsYd(it);
+    const rolls = Math.max(1, Math.round(r.rolls));
+    const cut = r.cut > 0 ? r.cut : cutCm;
+    const roll = dyeIsRoll(r.ship);
+    const qty = rolls * dyeShipQtyPerRoll(it, r.ship, cut);
+    return `
+    <div class="dye-mrow" data-i="${i}">
+      <div class="mr-top">
+        <select data-role="item">${dyeOptions(c.items, r.idx)}</select>
+        <button type="button" class="del" data-role="del" title="이 품목 빼기"${dyeUI.rows.length<=1?' disabled':''}>✕</button>
+      </div>
+      <div class="mr-ship">
+        <span class="lb">출고</span>
+        <div class="dye-ship">
+          <button type="button" data-ship="cut"${roll?'':' class="on"'}>${isYd ? '길이(yd)로' : '재단해서 개수로'}</button>
+          <button type="button" data-ship="roll"${roll?' class="on"':''}>롤 그대로</button>
+        </div>
+      </div>
+      <div class="mr-bot">
+        <input type="number" data-role="rolls" min="1" step="1" value="${rolls}"><span class="u">롤</span>
+        ${roll
+          ? `<span class="lb">· 재단 없이 롤째 출고</span>`
+          : isYd
+          ? `<span class="lb">· 재단 없이 길이 그대로</span>`
+          : `<span class="lb">· 재단</span><input type="number" data-role="cut" min="1" step="1" value="${cut}"><span class="u">cm</span>`}
+        <span class="mr-qty">${fmtNum(qty)}${dyeShipU(it, r.ship)}</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  gridEl.innerHTML = `
+  <div class="dye-wrap">
+    <div class="dye-top">
+      <section class="dye-card">
+        <h3>① 입력</h3>
+        <div class="dye-seg">
+          <button type="button" data-multi="0">단일 품목</button>
+          <button type="button" data-multi="1" class="on">여러 품목 조합</button>
+        </div>
+        ${rowsHtml}
+        <button type="button" class="dye-add" id="dye-add"${dyeUI.rows.length>=c.items.length?' disabled':''}>＋ 품목 추가</button>
+        <div class="dye-row" style="margin-top:12px"><span class="hint">한 통에 같이 넣는 품목들입니다. 품목마다 <b>재단해서 개수로</b> 나갈지 <b>롤 그대로</b> 나갈지 고를 수 있고, 염색비는 전체 무게로 매겨진 뒤 중량 비례로 나뉩니다</span></div>
+      </section>
+      <section class="dye-card" id="dye-out"></section>
+    </div>
+    <section class="dye-card">
+      <details class="dye-fold" id="dye-fold"${dyeUI.tableOpen ? ' open' : ''}>
+        <summary>③ 품목별 기준표 — <em>기본요금 ${fmtWon(fee.baseWon)}원으로 뽑을 수 있는 최대치</em></summary>
+        <div class="dye-scroll" id="dye-table"></div>
+      </details>
+    </section>
+    <div class="dye-foot">※ 염색비 추가금액 확인을 위한 계산기입니다. 실제 작업 현장에서는 수량에 다소 차이가 발생할 수 있습니다.</div>
+  </div>`;
+
+  const fold = gridEl.querySelector('#dye-fold');
+  if(fold) fold.addEventListener('toggle', () => { dyeUI.tableOpen = fold.open; });
+  gridEl.querySelectorAll('.dye-seg button').forEach(b =>
+    b.addEventListener('click', () => { dyeUI.multi = b.dataset.multi === '1'; renderDyeCalc(); }));
+
+  gridEl.querySelectorAll('.dye-mrow').forEach(row => {
+    const i = +row.dataset.i;
+    row.querySelector('[data-role=item]').addEventListener('change', e => {
+      dyeUI.rows[i].idx = +e.target.value; renderDyeCombo(c);
+    });
+    row.querySelector('[data-role=rolls]').addEventListener('input', e => {
+      const v = parseInt(e.target.value, 10);
+      dyeUI.rows[i].rolls = (isFinite(v) && v >= 1) ? v : 1;
+      dyeComboRecalc(c); dyeSyncRowQty(c);
+    });
+    const cutEl = row.querySelector('[data-role=cut]');
+    if(cutEl) cutEl.addEventListener('input', e => {
+      const v = parseFloat(e.target.value);
+      dyeUI.rows[i].cut = (isFinite(v) && v >= 1) ? v : (dyeUI.cutCm || c.def.cutCm);
+      dyeComboRecalc(c); dyeSyncRowQty(c);
+    });
+    row.querySelectorAll('.dye-ship button').forEach(b => b.addEventListener('click', () => {
+      dyeUI.rows[i].ship = b.dataset.ship; renderDyeCombo(c);
+    }));
+    row.querySelector('[data-role=del]').addEventListener('click', () => {
+      if(dyeUI.rows.length <= 1) return;
+      dyeUI.rows.splice(i,1); renderDyeCombo(c);
+    });
+  });
+  const add = gridEl.querySelector('#dye-add');
+  if(add) add.addEventListener('click', () => {
+    const used = new Set(dyeUI.rows.map(r => r.idx));
+    const next = c.items.findIndex((_,i) => !used.has(i));
+    if(next < 0) return;
+    dyeUI.rows.push({ idx: next, rolls: 1 });
+    renderDyeCombo(c);
+  });
+  dyeComboRecalc(c);
+  renderDyeTable();
+}
+
+/* 입력 중에는 행 전체를 다시 그리지 않고(포커스 유지) 수량 배지만 갱신 */
+function dyeSyncRowQty(c){
+  const defCut = dyeUI.cutCm > 0 ? dyeUI.cutCm : c.def.cutCm;
+  gridEl.querySelectorAll('.dye-mrow').forEach(row => {
+    const r = dyeUI.rows[+row.dataset.i]; if(!r) return;
+    const it = c.items[r.idx];
+    const qty = Math.max(1, Math.round(r.rolls)) * dyeShipQtyPerRoll(it, r.ship, r.cut > 0 ? r.cut : defCut);
+    const el = row.querySelector('.mr-qty');
+    if(el) el.textContent = fmtNum(qty) + dyeShipU(it, r.ship);
+  });
+}
+
+function dyeComboRecalc(c){
+  const out = gridEl.querySelector('#dye-out'); if(!out) return;
+  const fee = c.fee;
+  const cutCm = dyeUI.cutCm > 0 ? dyeUI.cutCm : c.def.cutCm;
+  const R = dyeCombo(dyeUI.rows, c, cutCm);
+  const pct = Math.min(100, R.totalKg / fee.baseKg * 100);
+  const over = R.totalKg > fee.baseKg;
+
+  let tips = '';
+  if(!over){
+    const room = kg3(fee.baseKg - R.totalKg);
+    tips += room >= 0.05
+      ? `<div class="dye-tip ok">💡 <b>${fmtKg(room)}kg 여유</b> — 염색비 ${fmtWon(R.f.won)}원 그대로 두고 더 넣을 수 있습니다. 롤 수를 올리거나 다른 품목을 추가해 보세요.</div>`
+      : `<div class="dye-tip ok">✅ 기본요금 구간을 꽉 채웠습니다. 단가 최적 상태.</div>`;
+  }else{
+    tips += `<div class="dye-tip warn">⚠️ ${fee.baseKg}kg를 <b>${fmtKg(R.totalKg - fee.baseKg)}kg 초과</b> → 초과 ${R.f.over}kg × ${fmtWon(fee.overWonPerKg)}원 = <b>+${fmtWon(R.f.won - fee.baseWon)}원</b>. 롤 수를 줄이면 기본요금 안으로 들어옵니다.</div>`;
+  }
+  if(R.parts.length > 1 && R.saving > 0){
+    tips += `<div class="dye-tip info">📦 <b>같이 보내서 ${fmtWon(R.saving)}원 절약</b> — `
+          + `따로따로 ${R.parts.length}번 보내면 ${fmtWon(R.separateWon)}원, 한 통에 합치면 <span class="big">${fmtWon(R.f.won)}원</span><br>`
+          + `<span style="opacity:.75">${fee.baseKg}kg까지 ${fmtWon(fee.baseWon)}원 정액이라, 나눠 보낼수록 기본요금을 그만큼 더 내게 됩니다.</span></div>`;
+  }
+
+  const dash = '<span style="color:var(--muted)">—</span>';
+  const rows = R.parts.map(p => `<tr class="static">
+      <td>${escapeHtml(p.it.name)}</td>
+      <td>${dyeShipLabel(p.it, p.ship, p.cut)}</td>
+      <td>${p.rolls}</td>
+      <td>${fmtKg(p.kg)}</td>
+      <td>${fmtNum(p.qty)}${p.u}</td>
+      <td>${fmtWon(p.share)}</td>
+      <td class="hi">${fmtWon(p.per)}원<span style="font-weight:400">/${p.u}</span></td>
+    </tr>`).join('');
+
+  out.innerHTML = `
+    <h3>② 결과 — <em>${R.parts.length}개 품목 한 통</em></h3>
+    <div class="dye-kpi">
+      <div><div class="k">총 투입 롤</div><div class="v">${fmtNum(R.totalRolls)}<s>롤</s></div></div>
+      <div><div class="k">총 투입 중량</div><div class="v">${fmtKg(R.totalKg)}<s>kg</s></div></div>
+      <div><div class="k">청구 중량</div><div class="v">${R.f.billKg}<s>kg</s></div></div>
+      <div class="big"><div class="k">염색비 합계</div><div class="v">${fmtWon(R.f.won)}<s>원</s></div></div>
+    </div>
+    <div class="dye-gauge-wrap">
+      <div class="dye-gauge"><i style="width:${pct}%;background:${over?'#c0392b':(pct>85?'#5b8a3c':'#8fae6e')}"></i></div>
+      <div class="dye-gauge-lbl"><span>${fmtKg(R.totalKg)}kg 투입</span><span>기본요금 한도 ${fee.baseKg}kg</span></div>
+    </div>
+    ${tips}
+    <div class="dye-scroll" style="margin-top:14px">
+      <table class="dyetab">
+        <thead><tr>
+          <th>품목</th><th>출고</th><th>롤</th><th>중량</th><th>수량</th>
+          <th>부담 염색비</th><th>단가</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+        <tfoot><tr>
+          <td>합계</td><td></td><td>${R.totalRolls}</td><td>${fmtKg(R.totalKg)}</td><td></td>
+          <td>${fmtWon(R.f.won)}</td><td></td>
+        </tr></tfoot>
+      </table>
+    </div>
+    <div class="dye-chain">부담 염색비 = 총 염색비 × (그 품목 중량 ÷ 전체 중량) — 중량 비례 배분<br>
+      <span style="opacity:.8">단가 = 부담액 ÷ 출고 수량 — 재단하면 <b>개당</b>, 롤 그대로·테이프는 <b>yd당</b></span></div>`;
+}
+
+function renderDyeTable(){
+  const host = gridEl.querySelector('#dye-table'); if(!host) return;
+  const c = dyeCfg(), fee = c.fee;
+  const cutCm  = dyeUI.cutCm > 0 ? dyeUI.cutCm : c.def.cutCm;
+  const rows = c.items.map((it,i) => {
+    const per = dyeQtyPerRoll(it, cutCm);
+    const u   = dyeU(it);
+    const mr  = dyeMaxRolls(it.rollKg, fee);
+    const kg  = kg3(mr * it.rollKg);
+    const pcs = mr * per;
+    const on = dyeUI.multi ? dyeUI.rows.some(r => r.idx === i) : (i === dyeUI.idx);
+    return `<tr data-i="${i}"${on?' class="sel"':''}>
+      <td>${escapeHtml(it.name)}</td>
+      <td>${fmtKg(it.rollKg)}</td>
+      <td>${fmtNum(per)}${u}</td>
+      <td class="em">${mr}</td>
+      <td>${fmtKg(kg)}</td>
+      <td class="em">${fmtNum(pcs)}${u}</td>
+      <td>${fmtWon(fee.baseWon)}</td>
+      <td class="em">${fmtWon(fee.baseWon/pcs)}<span style="color:var(--muted);font-weight:400">/${u}</span></td>
+      <td>${dyeIsYd(it) ? '<span style="color:var(--muted)">—</span>' : fmtWon(fee.baseWon/(mr*(it.rollYd||200))) + '<span style="color:var(--muted);font-weight:400">/yd</span>'}</td></tr>`;
+  }).join('');
+  host.innerHTML = `<table class="dyetab">
+    <thead><tr>
+      <th>품목</th><th>롤 무게(kg)</th><th>롤당 수량</th><th>최대 롤</th>
+      <th>투입 중량</th><th>총 수량</th><th>염색비</th><th>단가</th><th>롤 그대로 시</th>
+    </tr></thead><tbody>${rows}</tbody></table>
+    <div class="dye-row" style="margin:12px 0 0"><span class="hint" style="margin:0">
+      재단길이 ${cutCm}cm 기준 (yd 품목은 재단 없이 길이로 계산) · 행을 클릭하면 ${dyeUI.multi ? '조합에 넣거나 뺍니다' : '그 조건으로 계산합니다'}</span></div>`;
+  host.querySelectorAll('tbody tr').forEach(tr => tr.addEventListener('click', () => {
+    const i = +tr.dataset.i;
+    if(dyeUI.multi){
+      // 조합 모드: 이미 담긴 품목이면 빼고, 아니면 기본요금을 넘지 않는 선에서 넣는다
+      const at = dyeUI.rows.findIndex(r => r.idx === i);
+      if(at >= 0){ if(dyeUI.rows.length > 1) dyeUI.rows.splice(at,1); }
+      else {
+        const cut = dyeUI.cutCm > 0 ? dyeUI.cutCm : c.def.cutCm;
+        const usedKg = dyeCombo(dyeUI.rows, c, cut).totalKg;
+        const room = fee.baseKg - usedKg;
+        dyeUI.rows.push({ idx:i, rolls: Math.max(1, Math.floor(kg3(room / c.items[i].rollKg) + 1e-9)) });
+      }
+      renderDyeCombo(c);
+      return;
+    }
+    dyeUI.idx = i;
+    dyeUI.mode = 'rolls';
+    dyeUI.rolls = dyeMaxRolls(c.items[i].rollKg, fee);
+    renderDyeCalc();
+  }));
+}
+
+/* ====== INIT ====== */
+async function init(){
+  // viewer / admin 모두 GitHub raw에서 최신 data 가져옴
+  // admin이라도 항상 최신을 fetch (다른 디바이스에서 수정했을 수 있으니)
+  toast('데이터 불러오는 중…');
+  const remote = await fetchRemoteData();
+  state = remote;
+  CATEGORIES = catKeys(state);
+  currentTab = CATEGORIES[0];
+
+  // admin이면서 localStorage에 dirty 백업이 있으면 복구 옵션 제공
+  if(IS_ADMIN){
+    const cached = loadLocalState();
+    const cachedStr = cached ? JSON.stringify(cached) : '';
+    const remoteStr = JSON.stringify(remote);
+    if(cached && cachedStr !== remoteStr){
+      const useLocal = confirm(
+        '⚠️ 저장 안 된 로컬 변경사항이 있어요.\n\n' +
+        '확인 → 로컬 변경사항으로 작업 계속 (GitHub에 아직 안 올라간 수정 복구)\n' +
+        '취소 → GitHub 최신본 사용 (로컬 변경사항 버림)'
+      );
+      if(useLocal){
+        state = cached;
+        CATEGORIES = catKeys(state);
+        currentTab = CATEGORIES[0];
+        setDirty(true);
+      }else{
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+  }
+
+  renderTabs();
+  renderGrid();
+  updateSaveBar();
+}
+init();
+</script>
+</body>
+</html>
