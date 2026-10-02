@@ -576,7 +576,7 @@
 </head>
 <body>
 
-<script type="application/json" id="initial-data">{"METAL": [{"code": "품번 미정 (오창훈 프로)", "name": "로고 메탈 와펜 (@200~400원 / 도금별 상이)", "price": "(27MM*4.3MM)", "images": ["assets/bpm_metal_wappen_clean.png"], "priceTable": {"headers": ["도금", "단가(원)"], "rows": [["동착", "200"], ["검정컬러코팅", "200"], ["앤틱실버", "200"], ["니켈무광 (걸어도금)", "400"], ["흑니켈무광 (걸어도금)", "400"], ["흑니켈유광 (걸어도금)", "350"]]}, "shipments": []}]}</script>
+<script type="application/json" id="initial-data">{"METAL": [{"code": "로고 메탈 와펜 (오창훈 프로님)", "name": "로고 메탈 와펜 (@200~400원 / 도금별 상이)", "price": "(27MM*4.3MM)", "images": ["assets/bpm_metal_wappen_clean.png"], "priceTable": {"headers": ["도금", "단가(원)"], "rows": [["동착", "200"], ["검정컬러코팅", "200"], ["앤틱실버", "200"], ["니켈무광 (걸어도금)", "400"], ["흑니켈무광 (걸어도금)", "400"], ["흑니켈유광 (걸어도금)", "350"]]}, "shipments": []}]}</script>
 
 <header class="brand-bar">
   <div class="bar-row">
@@ -783,6 +783,12 @@ function catCount(cat){
   return r.length;
 }
 // 모든 자재 평탄화 (엑셀/검색용). 폴더형이면 _folder 라벨 부착
+// 이미지 경로: 사이트(github.io)에선 raw에서 바로 읽어 Pages 배포 지연 없이 data.json과 같이 뜨게
+function imgSrc(p){
+  if(typeof p === 'string' && p.startsWith('assets/') && location.hostname.endsWith('github.io'))
+    return `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${p}`;
+  return p;
+}
 function flatItems(cat){
   const r = state[cat]||[];
   if(isFolderCat(cat)) return r.flatMap(f => (f.items||[]).map(it => Object.assign({_folder:f.folder}, it)));
@@ -1141,7 +1147,7 @@ function buildCard(item, index, readonly, folderName){
   imgWrap.className = 'img-wrap';
   if(item.images && item.images[0]){
     const img = document.createElement('img');
-    img.src = item.images[0];
+    img.src = imgSrc(item.images[0]);
     img.alt = item.code || item.name || '';
     img.loading = 'lazy';
     img.addEventListener('error', () => {
@@ -1152,7 +1158,7 @@ function buildCard(item, index, readonly, folderName){
       imgWrap.appendChild(ph);
     });
     const multi = item.images.length > 1;
-    imgWrap.addEventListener('click', () => openLightbox(multi ? item.images : img.src));
+    imgWrap.addEventListener('click', () => openLightbox(multi ? item.images.map(imgSrc) : img.src));
     imgWrap.appendChild(img);
     if(multi){
       const badge = document.createElement('div');
@@ -1328,7 +1334,7 @@ function openEdit(idx, folderName){
   form.elements['name'].value = it.name || '';
   form.elements['price'].value = it.price || '';
   form.elements['shipments'].value = shipmentsToText(it.shipments);
-  setPreview(it.images && it.images[0] || null);
+  setPreview(it.images && it.images[0] ? imgSrc(it.images[0]) : null);
   // Always show fields when editing existing item
   fieldsStack.classList.add('show');
   modal.hidden = false;
