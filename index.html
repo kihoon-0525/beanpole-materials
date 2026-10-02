@@ -265,6 +265,12 @@
     background:#fafaf7;outline:none;
   }
   .field input:focus{border-color:var(--ink);background:var(--paper)}
+  .field textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;
+    background:#fafaf7;outline:none;resize:vertical;min-height:64px;font-size:13px;line-height:1.5}
+  .field textarea:focus{border-color:var(--ink);background:var(--paper)}
+  .card .ship{font-size:12px;line-height:1.5}
+  .card .ship .empty-v{color:var(--muted)}
+  .table-sub{margin:18px 0 8px;font-size:13px;font-weight:700}
   .img-pick{
     border:2px dashed #d8d4ca;border-radius:12px;
     padding:18px;text-align:center;background:#fafaf7;
@@ -570,7 +576,7 @@
 </head>
 <body>
 
-<script type="application/json" id="initial-data">{"METAL":[]}</script>
+<script type="application/json" id="initial-data">{"METAL": [{"code": "품번 미정 (오창훈 프로)", "name": "로고 메탈 와펜 (@200~400원 / 도금별 상이)", "price": "(27MM*4.3MM)", "images": ["assets/bpm_metal_wappen_clean.png"], "priceTable": {"headers": ["도금", "단가(원)"], "rows": [["동착", "200"], ["검정컬러코팅", "200"], ["앤틱실버", "200"], ["니켈무광 (걸어도금)", "400"], ["흑니켈무광 (걸어도금)", "400"], ["흑니켈유광 (걸어도금)", "350"]]}, "shipments": []}]}</script>
 
 <header class="brand-bar">
   <div class="bar-row">
@@ -650,6 +656,10 @@
         <div class="field">
           <label>4. 가격 / 스펙</label>
           <input name="price" autocomplete="off" placeholder="숫자만 입력하면 (@숫자) 자동 / 예) 145 → (@145)" />
+        </div>
+        <div class="field">
+          <label>5. 출고 이력 (한 줄에 하나: 업체 / 품번)</label>
+          <textarea name="shipments" placeholder="예) ○○어패럴 / BMxx-1234"></textarea>
         </div>
       </div>
       <div class="form-actions">
@@ -1054,7 +1064,8 @@ function renderGrid(){
   const filtered = !q ? items : items.filter(it =>
     (it.code||'').toLowerCase().includes(q) ||
     (it.name||'').toLowerCase().includes(q) ||
-    (it.price||'').toLowerCase().includes(q)
+    (it.price||'').toLowerCase().includes(q) ||
+    shipmentsToText(it.shipments).toLowerCase().includes(q)
   );
   infoEl.textContent = q ? `${filtered.length} / ${catCount(currentTab)}건` : `${items.length}건`;
 
@@ -1191,6 +1202,13 @@ function buildCard(item, index, readonly, folderName){
     p.innerHTML = `<span class="fld-label">${priceFieldLabel(item.price)}</span>${escapeHtml(cleanNotes(item.price))}`;
     body.appendChild(p);
   }
+  if(Array.isArray(item.shipments)){
+    const sh = document.createElement('div');
+    sh.className = 'ship';
+    const txt = item.shipments.map(x => [x.vendor, x.code].filter(Boolean).join(' / ')).join(', ');
+    sh.innerHTML = `<span class="fld-label">출고</span>` + (txt ? escapeHtml(txt) : '<span class="empty-v">업체 / 품번 미입력</span>');
+    body.appendChild(sh);
+  }
   if(item.priceTable){
     const btn = document.createElement('button');
     btn.className = 'table-btn';
@@ -1240,6 +1258,16 @@ function priceFieldLabel(v){
   return '비고';
 }
 // 품명 속 @단가 괄호 분리 → {name: @빠진 품명, unit: '@200' / '1EA @675' / null}
+// 출고 이력: [{vendor, code}] ↔ "업체 / 품번" 줄 텍스트
+function shipmentsToText(arr){
+  return (arr||[]).map(x => [x.vendor||'', x.code||''].filter(Boolean).join(' / ')).join('\n');
+}
+function textToShipments(t){
+  return (t||'').toString().split('\n').map(l => l.trim()).filter(Boolean).map(l => {
+    const i = l.indexOf('/');
+    return i < 0 ? {vendor:l, code:''} : {vendor:l.slice(0,i).trim(), code:l.slice(i+1).trim()};
+  });
+}
 function extractUnitFromName(name){
   const s = (name||'').toString();
   const m = s.match(/\(([^)]*@[^)]*)\)/);
@@ -1299,6 +1327,7 @@ function openEdit(idx, folderName){
   form.elements['code'].value = it.code || '';
   form.elements['name'].value = it.name || '';
   form.elements['price'].value = it.price || '';
+  form.elements['shipments'].value = shipmentsToText(it.shipments);
   setPreview(it.images && it.images[0] || null);
   // Always show fields when editing existing item
   fieldsStack.classList.add('show');
@@ -1406,6 +1435,7 @@ form.addEventListener('submit', e => {
     code: (fd.get('code')||'').toString().trim(),
     name: (fd.get('name')||'').toString().trim(),
     price: formatPrice(fd.get('price')),
+    shipments: textToShipments(fd.get('shipments')),
   };
   if(editingIndex < 0){
     // Add new
@@ -1552,12 +1582,14 @@ $('#btn-excel').addEventListener('click', () => {
       '코드': it.code || '',
       '이름': it.name || '',
       '가격 / 스펙': it.price || '',
+      '단가표': it.priceTable ? (it.priceTable.rows||[]).map(r => r.join(' ')).join(', ') : '',
+      '출고 (업체 / 품번)': shipmentsToText(it.shipments).replace(/\n/g, ', '),
       '이미지 수': (it.images || []).length,
     }));
-    const ws = XLSX.utils.json_to_sheet(rows.length ? rows : [{'No.':'', '폴더':'', '코드':'', '이름':'', '가격 / 스펙':'', '이미지 수':''}]);
+    const ws = XLSX.utils.json_to_sheet(rows.length ? rows : [{'No.':'', '폴더':'', '코드':'', '이름':'', '가격 / 스펙':'', '단가표':'', '출고 (업체 / 품번)':'', '이미지 수':''}]);
     // Auto-fit-ish column widths
     ws['!cols'] = [
-      { wch: 5 }, { wch: 12 }, { wch: 22 }, { wch: 40 }, { wch: 28 }, { wch: 8 },
+      { wch: 5 }, { wch: 12 }, { wch: 22 }, { wch: 40 }, { wch: 28 }, { wch: 40 }, { wch: 30 }, { wch: 8 },
     ];
     // Sheet name max 31 chars, no special chars
     const safe = cat.replace(/[\\\/\?\*\[\]:]/g,'_').slice(0,31);
@@ -1627,6 +1659,12 @@ function openTableModal(item){
     html += '</tr>';
   });
   html += '</tbody></table>';
+  if(Array.isArray(item.shipments)){
+    html += '<div class="table-sub">출고 이력</div><table class="ptable"><thead><tr><th>업체</th><th>품번</th></tr></thead><tbody>';
+    if(!item.shipments.length) html += '<tr><td colspan="2" style="color:var(--muted);font-weight:400">미입력</td></tr>';
+    item.shipments.forEach(x => { html += '<tr><td>'+escapeHtml(x.vendor||'')+'</td><td>'+escapeHtml(x.code||'')+'</td></tr>'; });
+    html += '</tbody></table>';
+  }
   tableModalBody.innerHTML = html;
   tableModal.hidden = false;
 }
